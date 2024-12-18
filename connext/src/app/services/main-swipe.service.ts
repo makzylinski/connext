@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environment';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,8 @@ export class MainSwipeService {
 
   constructor(private readonly http: HttpClient) {}
 
-  addUser = (user: any) => this.http.post(`${this.baseUrl}/api/users`, user);
+  addUser = (user: User) =>
+    this.http.post<User>(`${this.baseUrl}/api/users`, user);
 
   getUser = () => this.http.get(`${this.baseUrl}/api/users`);
 }
