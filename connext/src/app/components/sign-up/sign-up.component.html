@@ -6,14 +6,10 @@
     type="text"
     class="sign-up-input"
   />
-  <div
-    *ngIf="
-      signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched
-    "
-    class="sign-up-error"
-  >
-    Username is required.
-  </div>
+  @if (signUpForm.get('username')?.invalid &&
+  signUpForm.get('username')?.touched) {
+  <div class="sign-up-error">Username is required.</div>
+  }
 
   <label for="email" class="sign-up-label">Email:</label>
   <input
@@ -22,12 +18,9 @@
     type="email"
     class="sign-up-input"
   />
-  <div
-    *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched"
-    class="sign-up-error"
-  >
-    Valid email is required.
-  </div>
+  @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
+  <div class="sign-up-error">Valid email is required.</div>
+  }
 
   <label for="password" class="sign-up-label">Password:</label>
   <input
@@ -36,14 +29,11 @@
     type="password"
     class="sign-up-input"
   />
-  <div
-    *ngIf="
-      signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched
-    "
-    class="sign-up-error"
-  >
-    Password is required.
-  </div>
+
+  @if (signUpForm.get('password')?.invalid &&
+  signUpForm.get('password')?.touched) {
+  <div class="sign-up-error">Password is required.</div>
+  }
 
   <button type="submit" [disabled]="signUpForm.invalid" class="sign-up-button">
     Sign Up
