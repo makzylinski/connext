@@ -13,4 +13,6 @@ export class AuthService {
 
   signUp = (user: User) =>
     this.http.post<User>(`${this.baseUrl}/api/users`, user);
+
+  isLoggedIn = () => !!localStorage.getItem('token');
 }
