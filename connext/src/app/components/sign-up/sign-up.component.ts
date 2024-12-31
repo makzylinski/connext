@@ -30,7 +30,9 @@ export class SignUpComponent {
   onSubmit() {
     if (this.signUpForm.valid) {
       console.log('Form Submitted!', this.signUpForm.value);
-      this.authService.signUp(this.signUpForm.value).subscribe((user) => {
+      const userData = this.signUpForm.value;
+      userData.role = 'USER';
+      this.authService.signUp(userData).subscribe((user) => {
         this.signUpForm.reset();
         alert('User created!');
       });

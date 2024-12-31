@@ -12,7 +12,10 @@ export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
   signUp = (user: User) =>
-    this.http.post<User>(`${this.baseUrl}/api/users`, user);
+    this.http.post<User>(`${this.baseUrl}/register`, user);
+
+  logIn = (userData: any) =>
+    this.http.post<any>(`${this.baseUrl}/register`, userData);
 
   isLoggedIn = () => !!localStorage.getItem('token');
 }

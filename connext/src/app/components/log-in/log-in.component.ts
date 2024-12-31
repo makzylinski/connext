@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -17,7 +18,7 @@ import {
 export class LogInComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -28,6 +29,7 @@ export class LogInComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      this.authService.logIn(this.loginForm.value).subscribe();
       // Handle form submission
       console.log(this.loginForm.value);
     }
