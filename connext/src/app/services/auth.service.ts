@@ -16,7 +16,7 @@ export class AuthService {
     this.http.post<User>(`${this.baseUrl}/register`, user);
 
   logIn = (userData: UserCredentials) =>
-    this.http.post<UserCredentials>(`${this.baseUrl}/login`, userData);
+    this.http.post<{ token: string }>(`${this.baseUrl}/login`, userData);
 
   isLoggedIn = () => !!localStorage.getItem('token');
 }

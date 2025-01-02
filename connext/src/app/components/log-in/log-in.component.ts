@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -18,7 +19,11 @@ import { AuthService } from '../../services/auth.service';
 export class LogInComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -29,9 +34,14 @@ export class LogInComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      this.authService.logIn(this.loginForm.value).subscribe();
-      // Handle form submission
-      console.log(this.loginForm.value);
+      this.authService.logIn(this.loginForm.value).subscribe((response) => {
+        if (response) {
+          localStorage.setItem('token', response.token);
+          console.log(response);
+          this.router.navigate(['/']);
+        }
+      });
+      this.loginForm.reset();
     }
   }
 }
