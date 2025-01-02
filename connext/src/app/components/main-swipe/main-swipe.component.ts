@@ -3,8 +3,8 @@ import { MainSwipeService } from '../../services/main-swipe.service';
 
 @Component({
   selector: 'app-main-swipe',
-  standalone: true,
   imports: [],
+  standalone: true,
   templateUrl: './main-swipe.component.html',
   styleUrl: './main-swipe.component.scss',
 })
