@@ -8,6 +8,12 @@ import { User } from '../models/user.model';
   providedIn: 'root',
 })
 export class AuthService {
+  dispatchUser(userDetails: any) {
+    throw new Error('Method not implemented.');
+  }
+  dispatchToken(token: string) {
+    throw new Error('Method not implemented.');
+  }
   private readonly baseUrl = environment.baseUrl;
 
   constructor(private readonly http: HttpClient) {}
@@ -16,7 +22,10 @@ export class AuthService {
     this.http.post<User>(`${this.baseUrl}/register`, user);
 
   logIn = (userData: UserCredentials) =>
-    this.http.post<{ token: string }>(`${this.baseUrl}/login`, userData);
+    this.http.post<{
+      userDetails(userDetails: any): unknown;
+      token: string;
+    }>(`${this.baseUrl}/login`, userData);
 
   isLoggedIn = () => !!localStorage.getItem('token');
 }
