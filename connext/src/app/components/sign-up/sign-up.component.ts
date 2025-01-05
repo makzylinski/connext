@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../services/auth.service';
 
@@ -18,6 +19,7 @@ import { AuthService } from '../../services/auth.service';
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
@@ -27,6 +29,8 @@ export class SignUpComponent {
     private readonly fb: FormBuilder,
     private readonly authService: AuthService
   ) {}
+
+  hide = signal(true);
 
   signUpForm: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
@@ -46,5 +50,10 @@ export class SignUpComponent {
     } else {
       console.log('Form is invalid');
     }
+  }
+
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
   }
 }
