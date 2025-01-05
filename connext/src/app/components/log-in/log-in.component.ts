@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-log-in',
@@ -22,6 +23,7 @@ export class LogInComponent {
   constructor(
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
+    private readonly userService: UserService,
     private readonly router: Router
   ) {}
 
@@ -38,8 +40,8 @@ export class LogInComponent {
         if (response) {
           localStorage.setItem('token', response.token);
           console.log(response);
-          this.authService.dispatchUser(response.userDetails);
           this.authService.dispatchToken(response.token);
+          this.userService.dispatchUser(response.userDetails);
           this.router.navigate(['/']);
         }
       });

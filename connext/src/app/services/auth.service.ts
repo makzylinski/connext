@@ -1,22 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { environment } from '../../environment';
 import { UserCredentials } from '../models/user-credentials.type';
 import { User } from '../models/user.model';
+import { setToken } from '../store/auth/auth.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  dispatchUser(userDetails: any) {
-    throw new Error('Method not implemented.');
-  }
-  dispatchToken(token: string) {
-    throw new Error('Method not implemented.');
-  }
   private readonly baseUrl = environment.baseUrl;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly store: Store
+  ) {}
 
   signUp = (user: User) =>
     this.http.post<User>(`${this.baseUrl}/register`, user);
@@ -28,4 +27,6 @@ export class AuthService {
     }>(`${this.baseUrl}/login`, userData);
 
   isLoggedIn = () => !!localStorage.getItem('token');
+
+  dispatchToken = (token: string) => this.store.dispatch(setToken({ token }));
 }
