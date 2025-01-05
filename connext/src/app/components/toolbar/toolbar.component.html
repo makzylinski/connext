@@ -2,16 +2,19 @@
   <mat-toolbar-row>
     <span>My Application</span>
     <span class="example-spacer"></span>
-    <button mat-button>
+    <button mat-button matTooltip="Settings">
       <mat-icon>settings</mat-icon>
     </button>
-    <button mat-button>
+    @if (isLoggedIn) {
+    <button mat-button matTooltip="Login">
       <mat-icon>login</mat-icon>
     </button>
-    <button mat-button>
+    } @else {
+    <button mat-button matTooltip="Logout">
       <mat-icon>logout</mat-icon>
     </button>
-    <button mat-button>
+    }
+    <button mat-button matTooltip="Help">
       <mat-icon>help</mat-icon>
     </button>
   </mat-toolbar-row>
