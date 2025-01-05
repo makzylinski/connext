@@ -1,15 +1,12 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-form">
-  <label for="username" class="sign-up-label">Username:</label>
-  <input
-    id="username"
-    formControlName="username"
-    type="text"
-    class="sign-up-input"
-  />
-  @if (signUpForm.get('username')?.invalid &&
-  signUpForm.get('username')?.touched) {
-  <div class="sign-up-error">Username is required.</div>
-  }
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Joe Doe" formControlName="username" required />
+    @if (signUpForm.get('username')?.invalid &&
+    signUpForm.get('username')?.touched) {
+    <mat-error>Username is required.</mat-error>
+    }
+  </mat-form-field>
 
   <mat-form-field>
     <mat-label>Enter your email</mat-label>
