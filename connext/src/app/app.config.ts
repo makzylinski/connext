@@ -5,6 +5,7 @@ import {
   provideZoneChangeDetection,
 } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideStore(reducers),
     provideEffects([]),
     provideStoreDevtools(),
+    provideAnimationsAsync(),
     importProvidersFrom(BrowserAnimationsModule),
   ],
 };
