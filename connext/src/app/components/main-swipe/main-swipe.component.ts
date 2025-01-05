@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MainSwipeService } from '../../services/main-swipe.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { MainSwipeService } from '../../services/main-swipe.service';
   standalone: true,
   templateUrl: './main-swipe.component.html',
   styleUrl: './main-swipe.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainSwipeComponent {
   constructor(private readonly mainSwipeService: MainSwipeService) {}
