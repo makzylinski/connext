@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MainSwipeService } from '../../services/main-swipe.service';
 
 @Component({
   selector: 'app-main-swipe',
-  imports: [],
+  imports: [MatToolbarModule],
   standalone: true,
   templateUrl: './main-swipe.component.html',
   styleUrl: './main-swipe.component.scss',
