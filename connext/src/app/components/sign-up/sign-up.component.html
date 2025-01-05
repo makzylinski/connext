@@ -11,16 +11,18 @@
   <div class="sign-up-error">Username is required.</div>
   }
 
-  <label for="email" class="sign-up-label">Email:</label>
-  <input
-    id="email"
-    formControlName="email"
-    type="email"
-    class="sign-up-input"
-  />
-  @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
-  <div class="sign-up-error">Valid email is required.</div>
-  }
+  <mat-form-field>
+    <mat-label>Enter your email</mat-label>
+    <input
+      matInput
+      placeholder="pat@example.com"
+      formControlName="email"
+      required
+    />
+    @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
+    <mat-error>Valid email is required.</mat-error>
+    }
+  </mat-form-field>
 
   <label for="password" class="sign-up-label">Password:</label>
   <input
