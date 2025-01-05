@@ -1,23 +1,33 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-log-in',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+  ],
   standalone: true,
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss'],
 })
 export class LogInComponent {
+  hide = signal(true);
   loginForm: FormGroup;
 
   constructor(
@@ -32,6 +42,11 @@ export class LogInComponent {
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
+  }
+
+  clickEvent(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
   }
 
   onSubmit(): void {

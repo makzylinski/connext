@@ -1,39 +1,47 @@
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="sign-up-form">
-  <label for="username" class="sign-up-label">Username:</label>
-  <input
-    id="username"
-    formControlName="username"
-    type="text"
-    class="sign-up-input"
-  />
-  @if (signUpForm.get('username')?.invalid &&
-  signUpForm.get('username')?.touched) {
-  <div class="sign-up-error">Username is required.</div>
-  }
+  <mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Joe Doe" formControlName="username" required />
+    @if (signUpForm.get('username')?.invalid &&
+    signUpForm.get('username')?.touched) {
+    <mat-error>Username is required.</mat-error>
+    }
+  </mat-form-field>
 
-  <label for="email" class="sign-up-label">Email:</label>
-  <input
-    id="email"
-    formControlName="email"
-    type="email"
-    class="sign-up-input"
-  />
-  @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
-  <div class="sign-up-error">Valid email is required.</div>
-  }
+  <mat-form-field>
+    <mat-label>Enter your email</mat-label>
+    <input
+      matInput
+      placeholder="pat@example.com"
+      formControlName="email"
+      required
+    />
+    @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
+    <mat-error>Valid email is required.</mat-error>
+    }
+  </mat-form-field>
 
-  <label for="password" class="sign-up-label">Password:</label>
-  <input
-    id="password"
-    formControlName="password"
-    type="password"
-    class="sign-up-input"
-  />
-
-  @if (signUpForm.get('password')?.invalid &&
-  signUpForm.get('password')?.touched) {
-  <div class="sign-up-error">Password is required.</div>
-  }
+  <mat-form-field>
+    <mat-label>Enter your password</mat-label>
+    <input
+      matInput
+      [type]="hide() ? 'password' : 'text'"
+      formControlName="password"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clickEvent($event)"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+    @if (signUpForm.get('password')?.invalid &&
+    signUpForm.get('password')?.touched) {
+    <mat-error>Password is required.</mat-error>
+    }
+  </mat-form-field>
 
   <button type="submit" [disabled]="signUpForm.invalid" class="sign-up-button">
     Sign Up
