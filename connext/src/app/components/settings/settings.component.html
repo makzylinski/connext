@@ -1,6 +1,8 @@
 <mat-card appearance="outlined" class="settings-card">
+  @for (setting of settings; track $index) {
   <mat-card-header>
-    <mat-icon>home</mat-icon>
-    <mat-card-title>test1</mat-card-title>
+    <mat-icon>{{ setting.icon }}</mat-icon>
+    <mat-card-content>{{ setting.title }}</mat-card-content>
   </mat-card-header>
+  }
 </mat-card>
