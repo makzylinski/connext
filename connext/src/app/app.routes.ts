@@ -16,6 +16,16 @@ export const routes: Routes = [
     path: 'settings',
     component: SettingsComponent,
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'account-settings',
+        component: SettingsComponent,
+      },
+      {
+        path: 'app-settings',
+        component: SettingsComponent,
+      },
+    ],
   },
   {
     path: 'sign-up',

@@ -1,6 +1,6 @@
 <mat-card appearance="outlined" class="settings-card">
   @for (setting of settings; track $index) {
-  <mat-card-header>
+  <mat-card-header (click)="redirectToSubpage(setting.url)">
     <mat-icon>{{ setting.icon }}</mat-icon>
     <mat-card-content>{{ setting.title }}</mat-card-content>
   </mat-card-header>
