@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { MainSwipeComponent } from './components/main-swipe/main-swipe.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -19,7 +20,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'account-settings',
-        component: SettingsComponent,
+        component: AccountSettingsComponent,
       },
       {
         path: 'app-settings',
