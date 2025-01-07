@@ -1,0 +1,32 @@
+<mat-card appearance="outlined" class="settings-card">
+  @for (setting of settings; track $index) {
+  <div class="example-menu" cdkMenu>
+    <!-- <button
+      class="example-menu-item"
+      (click)="redirectToSubpage(setting.url)"
+      cdkMenuItem
+    >
+      <mat-icon>{{ setting.icon }}</mat-icon>
+      <mat-card-content>{{ setting.title }}</mat-card-content>
+    </button> -->
+  </div>
+  <!-- <mat-card-header (click)="redirectToSubpage(setting.url)">
+    <mat-icon>{{ setting.icon }}</mat-icon>
+    <mat-card-content>{{ setting.title }}</mat-card-content>
+  </mat-card-header> -->
+  }
+</mat-card>
+
+<!--
+
+<div class="example-menu" cdkMenu>
+  <button class="example-menu-item" cdkMenuItem>Inbox</button>
+  <button class="example-menu-item" cdkMenuItem>Snoozed</button>
+  <button class="example-menu-item" cdkMenuItem>Important</button>
+  <button class="example-menu-item" cdkMenuItem>Sent</button>
+  <button class="example-menu-item" cdkMenuItem>Drafts</button>
+  <button class="example-menu-item" cdkMenuItem>All Mail</button>
+</div>
+
+-->
+<router-outlet></router-outlet>

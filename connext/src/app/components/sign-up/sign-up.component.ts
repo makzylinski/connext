@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -23,6 +23,7 @@ import { AuthService } from '../../services/auth.service';
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpComponent {
   constructor(

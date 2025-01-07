@@ -2,10 +2,15 @@
   <mat-toolbar-row>
     <span>My Application</span>
     <span class="example-spacer"></span>
-    <button mat-button matTooltip="Settings">
+    <button
+      mat-button
+      matTooltip="Settings"
+      routerLink="/settings"
+      (click)="openSettings()"
+    >
       <mat-icon>settings</mat-icon>
     </button>
-    @if (isLoggedIn) {
+    @if (!isLoggedIn) {
     <button mat-button matTooltip="Login">
       <mat-icon>login</mat-icon>
     </button>

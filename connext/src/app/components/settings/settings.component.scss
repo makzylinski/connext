@@ -1,0 +1,35 @@
+.settings-card {
+  margin: 16px;
+  padding: 16px;
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+mat-card-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+
+  &:hover {
+    background-color: #ccc;
+    cursor: pointer;
+  }
+}
+
+mat-icon {
+  margin-right: 8px;
+  color: #3f51b5;
+}
+
+mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+mat-card-content {
+  padding: 16px;
+  font-size: 16px;
+}

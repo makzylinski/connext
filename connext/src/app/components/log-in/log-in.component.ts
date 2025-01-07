@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -25,6 +25,7 @@ import { UserService } from '../../services/user.service';
   standalone: true,
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LogInComponent {
   hide = signal(true);
