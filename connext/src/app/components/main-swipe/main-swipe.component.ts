@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MainSwipeService } from '../../services/main-swipe.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-main-swipe',
@@ -12,12 +12,12 @@ import { MainSwipeService } from '../../services/main-swipe.service';
   styleUrl: './main-swipe.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainSwipeComponent {
-  constructor(private readonly mainSwipeService: MainSwipeService) {}
+export class MainSwipeComponent implements OnInit {
+  constructor(private readonly userService: UserService) {}
 
   ngOnInit(): void {
-    this.mainSwipeService.getUser().subscribe((user) => {
-      console.log(user);
+    this.userService.getUsers().subscribe((profiles) => {
+      console.log(profiles);
     });
   }
 }
