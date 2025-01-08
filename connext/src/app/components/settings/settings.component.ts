@@ -3,10 +3,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterOutlet } from '@angular/router';
 import { Settings } from '../../models/settings.model';
+import { PhotoUploadComponent } from '../photo-upload/photo-upload.component';
 
 @Component({
   selector: 'app-settings',
-  imports: [MatCardModule, MatIconModule, RouterOutlet],
+  imports: [MatCardModule, MatIconModule, RouterOutlet, PhotoUploadComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

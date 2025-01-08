@@ -16,7 +16,7 @@ export class FileUploadService {
     formData.append('file', file);
 
     return this.http.post<string>(
-      `${this.baseUrl}/uploadProfileImage`,
+      `${this.baseUrl}api/users/uploadProfileImage`,
       formData
     );
   };
