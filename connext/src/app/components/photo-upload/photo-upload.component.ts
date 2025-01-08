@@ -15,18 +15,16 @@ export class PhotoUploadComponent {
 
   onFileSelected = (event: any) => (this.selectedFile = event.target.files[0]);
 
-  onUpload(userId: number): void {
+  onUpload(): void {
     if (this.selectedFile) {
-      this.fileUploadService
-        .uploadProfileImage(userId, this.selectedFile)
-        .subscribe(
-          (response) => {
-            console.log('File uploaded successfully:', response);
-          },
-          (error) => {
-            console.error('Error uploading file:', error);
-          }
-        );
+      this.fileUploadService.uploadProfileImage(this.selectedFile).subscribe(
+        (response) => {
+          console.log('File uploaded successfully:', response);
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+        }
+      );
     }
   }
 }

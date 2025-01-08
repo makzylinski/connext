@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environment';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -8,11 +9,24 @@ import { environment } from '../../environment';
 export class FileUploadService {
   private readonly baseUrl = environment.baseUrl;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly userService: UserService
+  ) {}
 
-  uploadProfileImage = (userId: number, file: File) => {
+  uploadProfileImage = (file: File) => {
     const formData: FormData = new FormData();
-    formData.append('userId', userId.toString());
+    this.userService.getUserId().subscribe((userId?: string | number) => {
+      console.log(userId);
+      if (typeof userId === 'number') {
+        formData.append('userId', userId.toString());
+      } else if (typeof userId === 'string') {
+        formData.append('userId', userId);
+      } else {
+        console.error('Invalid userId:', userId);
+      }
+    });
+
     formData.append('file', file);
 
     const headers = new HttpHeaders({
