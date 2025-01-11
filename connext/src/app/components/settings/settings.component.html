@@ -1,5 +1,7 @@
 <mat-card appearance="outlined" class="settings-card">
   <app-photo-upload></app-photo-upload>
+  <button (click)="fetchImage()">click</button>
+  <img [src]="imgSrc$ | async" alt="test" />
   @for (setting of settings; track $index) {
   <div class="example-menu" cdkMenu>
     <!-- <button

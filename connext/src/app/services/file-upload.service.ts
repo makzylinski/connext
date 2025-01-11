@@ -7,7 +7,7 @@ import { UserService } from './user.service';
   providedIn: 'root',
 })
 export class FileUploadService {
-  private readonly baseUrl = environment.baseUrl;
+  private readonly baseUrl = environment.baseUrl + '/api';
 
   constructor(
     private readonly http: HttpClient,
@@ -33,9 +33,21 @@ export class FileUploadService {
       Accept: 'text/plain',
     });
     return this.http.post<string>(
-      `${this.baseUrl}/api/users/uploadProfileImage`,
+      `${this.baseUrl}/users/uploadProfileImage`,
       formData,
       { headers, responseType: 'text' as 'json' }
     );
   };
+
+  fetchProfileImage = () => {
+    const headers = new HttpHeaders({
+      Accept: 'text/plain',
+    });
+    return this.http.get(`${this.baseUrl}/users/profileImage?userId=7`, {
+      headers,
+      responseType: 'text',
+    });
+  };
+  //const params = new HttpParams().set('userId', userId.toString());
+  //return this.http.get<string>(`${this.baseUrl}/api/users/profileImage`, { params });
 }
