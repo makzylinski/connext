@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { MainSwipeComponent } from './components/main-swipe/main-swipe.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AccountSettingsComponent } from './components/settings/account-settings/account-settings.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AuthGuard } from './guards/auth.guard';
