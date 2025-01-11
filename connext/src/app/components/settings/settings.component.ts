@@ -22,7 +22,7 @@ import { PhotoUploadComponent } from '../photo-upload/photo-upload.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {
-  imgSrc$: Observable<string> | undefined;
+  imgSrc$?: Observable<string>;
 
   settings: Settings[] = [
     {
