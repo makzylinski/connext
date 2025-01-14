@@ -1,3 +1,4 @@
-import { User } from './user.model';
-
-export type UserCredentials = Pick<User, 'username' | 'password'>;
+export interface UserCredentials {
+  password: string;
+  username: string;
+}

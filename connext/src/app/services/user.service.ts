@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { environment } from '../../environment';
+import { User } from '../models/user.model';
 import { setUserData } from '../store/user/user.actions';
 import { selectUserId } from '../store/user/user.selectors';
 
@@ -16,9 +18,17 @@ export class UserService {
     private readonly http: HttpClient
   ) {}
 
-  getUsers = () => this.http.get(`${this.baseUrl}`);
+  getUsers = (): Observable<User[]> => this.http.get<User[]>(`${this.baseUrl}`);
 
   dispatchUser = (user: any) => this.store.dispatch(setUserData({ user }));
 
   getUserId = () => this.store.select(selectUserId);
+
+  acceptUser = (user: User) => {
+    console.log('Accepted user:', user);
+  };
+
+  rejectUser = (user: User) => {
+    console.log('Rejected user:', user);
+  };
 }

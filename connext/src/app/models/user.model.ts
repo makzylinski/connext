@@ -2,5 +2,8 @@ export interface User {
   id: number | string;
   username: string;
   email: string;
-  password: string;
+  bio: string;
+  profileImageUrl: string;
+  dateOfBirth: Date;
+  role: string;
 }
