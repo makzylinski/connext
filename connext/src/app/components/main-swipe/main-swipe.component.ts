@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 
@@ -16,21 +15,23 @@ import { UserService } from '../../services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainSwipeComponent implements OnInit {
-  users$: Observable<User[]>;
+  users: User[] = [];
+  iterator: number = 0;
   constructor(private readonly userService: UserService) {}
 
   ngOnInit(): void {
-    this.users$ = this.userService.getUsers();
     this.userService.getUsers().subscribe((users) => {
-      console.log(users);
+      this.users = users;
     });
   }
 
   acceptUser = (user: User): void => {
     this.userService.acceptUser(user);
+    if (this.iterator + 1 < this.users.length) this.iterator++;
   };
 
   rejectUser = (user: User): void => {
     this.userService.rejectUser(user);
+    if (this.iterator + 1 < this.users.length) this.iterator++;
   };
 }
