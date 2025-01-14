@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
+import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -15,7 +16,7 @@ import { UserService } from '../../services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainSwipeComponent implements OnInit {
-  users$: Observable<any>;
+  users$: Observable<User[]>;
   constructor(private readonly userService: UserService) {}
 
   ngOnInit(): void {
