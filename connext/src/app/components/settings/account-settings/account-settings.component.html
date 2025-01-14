@@ -1,1 +1,3 @@
-<p>account-settings works!</p>
+<app-photo-upload></app-photo-upload>
+<button (click)="fetchImage()">click</button>
+<img [src]="imgSrc$ | async" alt="test" />
