@@ -10,10 +10,10 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button class="profile-card__reject">
+    <button mat-button class="profile-card__reject" (click)="rejectUser(user)">
       <mat-icon>close</mat-icon>
     </button>
-    <button mat-button class="profile-card__check">
+    <button mat-button class="profile-card__check" (click)="acceptUser(user)">
       <mat-icon>check</mat-icon>
     </button>
   </mat-card-actions>

@@ -23,4 +23,12 @@ export class UserService {
   dispatchUser = (user: any) => this.store.dispatch(setUserData({ user }));
 
   getUserId = () => this.store.select(selectUserId);
+
+  acceptUser = (user: User) => {
+    console.log('Accepted user:', user);
+  };
+
+  rejectUser = (user: User) => {
+    console.log('Rejected user:', user);
+  };
 }

@@ -25,4 +25,12 @@ export class MainSwipeComponent implements OnInit {
       console.log(users);
     });
   }
+
+  acceptUser = (user: User): void => {
+    this.userService.acceptUser(user);
+  };
+
+  rejectUser = (user: User): void => {
+    this.userService.rejectUser(user);
+  };
 }
