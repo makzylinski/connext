@@ -1,19 +1,13 @@
-<mat-card appearance="outlined" class="settings-card">
-  @for (setting of settings; track $index) {
-  <div class="example-menu" cdkMenu>
-    <button
-      class="example-menu-item"
-      (click)="redirectToSubpage(setting.url)"
-      cdkMenuItem
-    >
-      <mat-icon>{{ setting.icon }}</mat-icon>
-      <mat-card-content>{{ setting.title }}</mat-card-content>
-    </button>
+<div class="settings">
+  <div class="settings__nav">
+    @for (setting of settings; track setting.title) {
+    <div class="settings__nav--element">
+      <div class="settings__nav--element-icon">
+        <mat-icon>{{ setting.icon }}</mat-icon>
+      </div>
+      <div class="settings__nav--element-header">{{ setting.title }}</div>
+    </div>
+    }
   </div>
-  <mat-card-header (click)="redirectToSubpage(setting.url)">
-    <mat-icon>{{ setting.icon }}</mat-icon>
-    <mat-card-content>{{ setting.title }}</mat-card-content>
-  </mat-card-header>
-  }
-</mat-card>
-<router-outlet></router-outlet>
+  <div class="settings__content">content</div>
+</div>
