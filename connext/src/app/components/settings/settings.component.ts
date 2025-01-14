@@ -33,7 +33,7 @@ export class SettingsComponent {
 
   constructor(private readonly router: Router) {}
 
-  redirectToSubpage = (url: string): void => {
+  navigateTo = (url: string): void => {
     this.router.navigate(['settings', url]);
   };
 }
