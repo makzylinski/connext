@@ -1,7 +1,11 @@
 <mat-card class="profile-card" appearance="outlined">
   <img
     mat-card-image
-    [src]="users[iterator].profileImageUrl"
+    [src]="
+      users[iterator].profileImageUrl
+        ? users[iterator].profileImageUrl
+        : 'assets/images/default-profile.png'
+    "
     alt="Profile picture"
   />
   <mat-card-header>{{ users[iterator].username }}</mat-card-header>
