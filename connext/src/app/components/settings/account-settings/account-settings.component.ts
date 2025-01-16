@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { Observable } from 'rxjs';
 import { FileUploadService } from '../../../services/file-upload.service';
 import { PhotoUploadComponent } from '../../photo-upload/photo-upload.component';
+import { BioComponent } from '../bio/bio.component';
 
 @Component({
   selector: 'app-account-settings',
-  imports: [PhotoUploadComponent, CommonModule],
+  imports: [PhotoUploadComponent, BioComponent, CommonModule, MatCardModule],
   templateUrl: './account-settings.component.html',
   styleUrl: './account-settings.component.scss',
   standalone: true,

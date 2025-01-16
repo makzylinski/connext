@@ -1,3 +1,11 @@
-<app-photo-upload></app-photo-upload>
-<button (click)="fetchImage()">click</button>
-<img [src]="imgSrc$ | async" alt="test" />
+<mat-card appearance="outlined">
+  <mat-card-content
+    ><app-photo-upload></app-photo-upload>
+    <button (click)="fetchImage()">click</button>
+    <img [src]="imgSrc$ | async" alt="test"
+  /></mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined">
+  <mat-card-content> <app-bio></app-bio> </mat-card-content>
+</mat-card>
