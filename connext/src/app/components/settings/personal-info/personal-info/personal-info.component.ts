@@ -5,6 +5,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { PersonalInfoService } from '../../../../services/personal-info.service';
 
 @Component({
   selector: 'app-personal-info',
@@ -23,7 +24,10 @@ import { MatInputModule } from '@angular/material/input';
 export class PersonalInfoComponent implements OnInit {
   personalInfoForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly personalInfoService: PersonalInfoService
+  ) {}
 
   ngOnInit(): void {
     this.personalInfoForm = this.fb.group({
@@ -33,5 +37,23 @@ export class PersonalInfoComponent implements OnInit {
     });
   }
 
-  onSubmit = () => null;
+  onSubmit = () => {
+    if (this.personalInfoForm.get('name')?.value) {
+      this.personalInfoService.putNameChange(
+        this.personalInfoForm.get('name')?.value
+      );
+    }
+    if (this.personalInfoForm.get('email')?.value) {
+      this.personalInfoService.putEmailChange(
+        this.personalInfoForm.get('email')?.value
+      );
+    }
+    if (this.personalInfoForm.get('dateOfBirth')?.value) {
+      this.personalInfoService.putDateOfBirthChange(
+        this.personalInfoForm.get('dateOfBirth')?.value
+      );
+    }
+
+    console.log(this.personalInfoForm.value);
+  };
 }

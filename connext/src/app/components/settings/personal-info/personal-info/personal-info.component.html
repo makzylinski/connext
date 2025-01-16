@@ -8,7 +8,7 @@
     <input matInput placeholder="test@test.com" formControlName="email" />
   </mat-form-field>
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" />
+    <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" />
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
