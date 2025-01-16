@@ -1,1 +1,12 @@
-<p>bio works!</p>
+<mat-form-field class="bio">
+  <mat-label>Introduce yourself...</mat-label>
+  <textarea
+    matInput
+    placeholder="Tell us something about yourself"
+    height="500px"
+    style="resize: none"
+    maxlength="500"
+    [(ngModel)]="bioValue"
+  ></textarea>
+</mat-form-field>
+<button mat-flat-button>Save</button>
