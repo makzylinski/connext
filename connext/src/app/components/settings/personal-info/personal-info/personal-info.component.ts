@@ -39,9 +39,9 @@ export class PersonalInfoComponent implements OnInit {
 
   onSubmit = () => {
     if (this.personalInfoForm.get('name')?.value) {
-      this.personalInfoService.putNameChange(
-        this.personalInfoForm.get('name')?.value
-      );
+      this.personalInfoService
+        .putNameChange(this.personalInfoForm.get('name')?.value)
+        .subscribe();
     }
     if (this.personalInfoForm.get('email')?.value) {
       this.personalInfoService.putEmailChange(

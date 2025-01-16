@@ -12,7 +12,7 @@ export class SettingsService {
 
   constructor(
     private readonly http: HttpClient,
-    private userService: UserService
+    private readonly userService: UserService
   ) {}
 
   saveBio = (bio: string) =>
