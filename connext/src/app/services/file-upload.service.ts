@@ -17,7 +17,6 @@ export class FileUploadService {
   uploadProfileImage = (file: File) => {
     const formData: FormData = new FormData();
     this.userService.getUserId().subscribe((userId?: string | number) => {
-      console.log(userId);
       if (typeof userId === 'number') {
         formData.append('userId', userId.toString());
       } else if (typeof userId === 'string') {

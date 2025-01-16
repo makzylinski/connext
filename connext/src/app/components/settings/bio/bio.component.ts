@@ -17,5 +17,5 @@ export class BioComponent {
 
   constructor(private readonly settingsService: SettingsService) {}
 
-  onSave = () => this.settingsService.saveBio(this.bioValue);
+  onSave = () => this.settingsService.saveBio(this.bioValue).subscribe();
 }
