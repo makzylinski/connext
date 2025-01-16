@@ -5,10 +5,17 @@ import { Observable } from 'rxjs';
 import { FileUploadService } from '../../../services/file-upload.service';
 import { PhotoUploadComponent } from '../../photo-upload/photo-upload.component';
 import { BioComponent } from '../bio/bio.component';
+import { PersonalInfoComponent } from '../personal-info/personal-info/personal-info.component';
 
 @Component({
   selector: 'app-account-settings',
-  imports: [PhotoUploadComponent, BioComponent, CommonModule, MatCardModule],
+  imports: [
+    PhotoUploadComponent,
+    BioComponent,
+    PersonalInfoComponent,
+    CommonModule,
+    MatCardModule,
+  ],
   templateUrl: './account-settings.component.html',
   styleUrl: './account-settings.component.scss',
   standalone: true,
