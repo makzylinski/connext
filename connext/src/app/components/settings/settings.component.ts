@@ -3,27 +3,16 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Settings } from '../../models/settings.model';
-import { FileUploadService } from '../../services/file-upload.service';
-import { PhotoUploadComponent } from '../photo-upload/photo-upload.component';
 
 @Component({
   selector: 'app-settings',
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatIconModule,
-    RouterOutlet,
-    PhotoUploadComponent,
-  ],
+  imports: [CommonModule, MatCardModule, MatIconModule, RouterOutlet],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {
-  imgSrc$?: Observable<string>;
-
   settings: Settings[] = [
     {
       icon: 'person',
@@ -42,15 +31,9 @@ export class SettingsComponent {
     },
   ];
 
-  constructor(
-    private readonly router: Router,
-    private readonly fileUploadService: FileUploadService
-  ) {}
+  constructor(private readonly router: Router) {}
 
-  redirectToSubpage = (url: string): void => {
+  navigateTo = (url: string): void => {
     this.router.navigate(['settings', url]);
   };
-
-  fetchImage = () =>
-    (this.imgSrc$ = this.fileUploadService.fetchProfileImage());
 }
