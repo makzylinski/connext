@@ -31,18 +31,12 @@ export class PersonalInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.personalInfoForm = this.fb.group({
-      name: [''],
       email: [''],
       dateOfBirth: [''],
     });
   }
 
   onSubmit = () => {
-    if (this.personalInfoForm.get('name')?.value) {
-      this.personalInfoService
-        .putNameChange(this.personalInfoForm.get('name')?.value)
-        .subscribe();
-    }
     if (this.personalInfoForm.get('email')?.value) {
       this.personalInfoService.putEmailChange(
         this.personalInfoForm.get('email')?.value
