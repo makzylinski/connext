@@ -31,4 +31,6 @@ export class ToolbarComponent {
   openSettings = () => {
     this.router.navigate(['settings']);
   };
+
+  navigateToHomePage = () => this.router.navigate(['/']);
 }
