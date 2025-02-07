@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
+import { MatchService } from '../../services/match.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -19,7 +20,10 @@ export class MainSwipeComponent implements OnInit {
   users: User[] = [];
   users$: Observable<User[]>;
   iterator: number = 0;
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly matchService: MatchService
+  ) {}
 
   ngOnInit(): void {
     this.users$ = this.userService.getUsers();
@@ -29,13 +33,13 @@ export class MainSwipeComponent implements OnInit {
     });
   }
 
-  acceptUser = (user: User): void => {
-    this.userService.acceptUser(user);
+  acceptUser = (matchId: number): void => {
+    this.matchService.acceptUser(matchId);
     if (this.iterator + 1 < this.users.length) this.iterator++;
   };
 
-  rejectUser = (user: User): void => {
-    this.userService.rejectUser(user);
+  rejectUser = (matchId: number): void => {
+    this.matchService.rejectUser(matchId);
     if (this.iterator + 1 < this.users.length) this.iterator++;
   };
 }
