@@ -1,1 +1,9 @@
-<p>matches-thumbnails works!</p>
+<div class="thumbnails">
+  @for (item of testProfiles; track $index) {
+  <div class="thumbnails__profile">
+    <div class="thumbnails__image">
+      <img src="{{ item.image }}" alt="{{ item.name }}" />
+    </div>
+  </div>
+  }
+</div>
