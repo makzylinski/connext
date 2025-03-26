@@ -32,5 +32,7 @@ export class ToolbarComponent {
     this.router.navigate(['settings']);
   };
 
+  navigateToProfile = () => this.router.navigate(['/profile']);
+
   navigateToHomePage = () => this.router.navigate(['/']);
 }

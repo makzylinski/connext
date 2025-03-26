@@ -2,12 +2,10 @@
   <mat-toolbar-row>
     <span class="logo" (click)="navigateToHomePage()">Connext</span>
     <span class="example-spacer"></span>
-    <button
-      mat-button
-      matTooltip="Settings"
-      routerLink="/settings"
-      (click)="openSettings()"
-    >
+    <button mat-button matTooltip="Profile" (click)="navigateToProfile()">
+      <mat-icon>group</mat-icon>
+    </button>
+    <button mat-button matTooltip="Settings" (click)="openSettings()">
       <mat-icon>settings</mat-icon>
     </button>
     @if (!isLoggedIn) {
@@ -19,8 +17,5 @@
       <mat-icon>logout</mat-icon>
     </button>
     }
-    <button mat-button matTooltip="Help">
-      <mat-icon>help</mat-icon>
-    </button>
   </mat-toolbar-row>
 </mat-toolbar>
