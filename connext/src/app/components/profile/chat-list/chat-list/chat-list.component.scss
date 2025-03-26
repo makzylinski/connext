@@ -1,18 +1,26 @@
 .chat__list {
   &-element {
     cursor: pointer;
-    width: 350px;
+    width: 250px;
     height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     overflow: hidden;
     border: 1px solid #ccc;
+
+    &__details {
+      h3 {
+        margin: 0 10px;
+      }
+      p {
+        color: #adaaaa;
+        margin: 0 10px;
+      }
+    }
   }
 
   &-element img {
-    border: 2px solid red;
     width: 50px;
     height: 50px;
     border-radius: 50%;

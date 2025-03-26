@@ -3,10 +3,8 @@
     @for (chat of testChats; track $index) {
     <li class="chat__list-element">
       <img src="{{ chat.image }}" alt="{{ chat.name }}" />
-      <div class="chat__list-element__name">
+      <div class="chat__list-element__details">
         <h3>{{ chat.name }}</h3>
-      </div>
-      <div class="chat__list-element__message">
         <p>{{ chat.lastMessage }}</p>
       </div>
     </li>
