@@ -1,1 +1,12 @@
-<div class="messages"></div>
+<div class="messages">
+  @for (message of messages; track $index) {
+  <div
+    class="messages__message"
+    [ngClass]="{ 'messages__message--from-me': message.fromMe }"
+  >
+    <div class="messages__message-content">
+      {{ message.message }}
+    </div>
+  </div>
+  }
+</div>
