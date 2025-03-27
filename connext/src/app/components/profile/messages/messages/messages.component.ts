@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { Message } from '../../../../models/message.interface';
 
 @Component({
   selector: 'app-messages',
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
