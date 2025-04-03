@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MessageService } from '../../services/message.service';
 import { ChatListComponent } from './chat-list/chat-list/chat-list.component';
 import { MatchesThumbnailsComponent } from './matches-thumbnails/matches-thumbnails/matches-thumbnails.component';
 import { MessagesComponent } from './messages/messages/messages.component';
@@ -11,4 +12,12 @@ import { MessagesComponent } from './messages/messages/messages.component';
   styleUrl: './profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileComponent {}
+export class ProfileComponent implements OnInit {
+  messages: string[];
+
+  constructor(private readonly messageService: MessageService) {}
+
+  ngOnInit(): void {
+    this.messages = this.messageService.getMessages();
+  }
+}
