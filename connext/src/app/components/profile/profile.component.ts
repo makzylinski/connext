@@ -15,10 +15,12 @@ import { MessagesComponent } from './messages/messages/messages.component';
 })
 export class ProfileComponent implements OnInit {
   messages: Message[];
+  chats: any[];
 
   constructor(private readonly messageService: MessageService) {}
 
   ngOnInit(): void {
     this.messages = this.messageService.getMessages();
+    this.chats = this.messageService.getChatProfiles();
   }
 }

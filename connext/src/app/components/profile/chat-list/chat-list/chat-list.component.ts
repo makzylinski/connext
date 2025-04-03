@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { UserService } from '../../../../services/user.service';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-chat-list',
@@ -9,7 +8,5 @@ import { UserService } from '../../../../services/user.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatListComponent {
-  constructor(private readonly userService: UserService) {}
-
-  testChats = this.userService.testProfiles;
+  @Input() chats: any[];
 }
