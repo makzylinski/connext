@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Message } from '../../models/message.interface';
 import { MessageService } from '../../services/message.service';
 import { ChatListComponent } from './chat-list/chat-list/chat-list.component';
 import { MatchesThumbnailsComponent } from './matches-thumbnails/matches-thumbnails/matches-thumbnails.component';
@@ -13,7 +14,7 @@ import { MessagesComponent } from './messages/messages/messages.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements OnInit {
-  messages: string[];
+  messages: Message[];
 
   constructor(private readonly messageService: MessageService) {}
 
