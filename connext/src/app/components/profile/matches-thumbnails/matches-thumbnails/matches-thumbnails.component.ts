@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { UserService } from '../../../../services/user.service';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-matches-thumbnails',
@@ -10,7 +9,5 @@ import { UserService } from '../../../../services/user.service';
   standalone: true,
 })
 export class MatchesThumbnailsComponent {
-  constructor(private readonly userService: UserService) {}
-
-  testProfiles = this.userService.testProfiles;
+  @Input() matches: any[];
 }
