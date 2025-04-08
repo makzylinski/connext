@@ -18,11 +18,11 @@ export class UserService {
     private readonly http: HttpClient
   ) {}
 
-  selectLoggedUser = () => this.store.select(selectUser);
+  selectLoggedUser = (): Observable<User> => this.store.select(selectUser);
 
   getUsers = (): Observable<User[]> => this.http.get<User[]>(`${this.baseUrl}`);
 
-  dispatchUser = (user: any) => this.store.dispatch(setUserData({ user }));
+  dispatchUser = (user: User) => this.store.dispatch(setUserData({ user }));
 
-  getUserId = () => this.store.select(selectUserId);
+  getUserId = (): Observable<number> => this.store.select(selectUserId);
 }

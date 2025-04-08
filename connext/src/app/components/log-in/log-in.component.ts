@@ -10,8 +10,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { userFactory } from '../../utils/user.factory';
 
 @Component({
   selector: 'app-log-in',
@@ -57,7 +59,8 @@ export class LogInComponent {
           localStorage.setItem('token', response.token);
           console.log(response);
           this.authService.dispatchToken(response.token);
-          this.userService.dispatchUser(response.userDetails);
+          const userData: User = userFactory(response.userDetails);
+          this.userService.dispatchUser(userData);
           this.router.navigate(['/']);
         }
       });

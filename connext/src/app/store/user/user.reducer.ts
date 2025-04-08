@@ -3,7 +3,15 @@ import { UserState } from './user-state.model';
 import { setUserData } from './user.actions';
 
 export const initialState: UserState = {
-  user: null,
+  user: {
+    id: -1,
+    username: '',
+    email: '',
+    bio: '',
+    profileImageUrl: '',
+    dateOfBirth: new Date(),
+    role: '',
+  },
 };
 
 export const userReducer = createReducer(
