@@ -1,4 +1,5 @@
 <mat-card class="profile-card" appearance="outlined">
+  {{ (loggedUser$ | async)?.username }} id {{ (loggedUser$ | async)?.id }}
   @for (u of users$ | async; track u.id; let i = $index) { @if (u && i ===
   iterator) {
   <img

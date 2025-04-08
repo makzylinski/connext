@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environment';
 import { User } from '../models/user.model';
 import { setUserData } from '../store/user/user.actions';
-import { selectUserId } from '../store/user/user.selectors';
+import { selectUser, selectUserId } from '../store/user/user.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,8 @@ export class UserService {
     private readonly store: Store,
     private readonly http: HttpClient
   ) {}
+
+  selectLoggedUser = () => this.store.select(selectUser);
 
   getUsers = (): Observable<User[]> => this.http.get<User[]>(`${this.baseUrl}`);
 
