@@ -19,7 +19,8 @@ import { UserService } from '../../services/user.service';
 export class MainSwipeComponent implements OnInit {
   users: User[] = [];
   users$: Observable<User[]>;
-  loggedUser$: Observable<User | null>;
+  loggedUser$: Observable<User>;
+  loggedUserFromLocalStorage: User;
   iterator: number = 0;
   constructor(
     private readonly userService: UserService,
@@ -28,6 +29,8 @@ export class MainSwipeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedUser$ = this.userService.selectLoggedUser();
+    this.loggedUserFromLocalStorage =
+      this.userService.getLoggedUserFromLocalStorage();
     this.users$ = this.userService.getUsers();
     this.userService.getUsers().subscribe((users) => {
       this.users = users;

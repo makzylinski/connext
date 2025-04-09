@@ -57,7 +57,7 @@ export class LogInComponent {
       this.authService.logIn(this.loginForm.value).subscribe((response) => {
         if (response) {
           localStorage.setItem('token', response.token);
-          console.log(response);
+          localStorage.setItem('user', JSON.stringify(response.userDetails));
           this.authService.dispatchToken(response.token);
           const userData: User = userFactory(response.userDetails);
           this.userService.dispatchUser(userData);

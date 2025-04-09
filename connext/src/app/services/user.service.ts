@@ -25,4 +25,12 @@ export class UserService {
   dispatchUser = (user: User) => this.store.dispatch(setUserData({ user }));
 
   getUserId = (): Observable<number> => this.store.select(selectUserId);
+
+  getLoggedUserFromLocalStorage = (): User => {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      throw new Error('No logged user found in localStorage');
+    }
+    return JSON.parse(user);
+  };
 }

@@ -1,6 +1,11 @@
 <mat-card class="profile-card" appearance="outlined">
+  @if ((loggedUser$ | async)?.id !== -1) {
   {{ (loggedUser$ | async)?.username }} id {{ (loggedUser$ | async)?.id }}
-  @for (u of users$ | async; track u.id; let i = $index) { @if (u && i ===
+  } @else {
+  {{ loggedUserFromLocalStorage.username }} id
+  {{ loggedUserFromLocalStorage.id }}
+
+  } @for (u of users$ | async; track u.id; let i = $index) { @if (u && i ===
   iterator) {
   <img
     mat-card-image
