@@ -1,11 +1,11 @@
 <div class="profile">
   <div class="profile__matches-thumbnails">
-    <app-matches-thumbnails [matches]="chats"></app-matches-thumbnails>
+    <app-matches-thumbnails [pairs$]="pairs$"></app-matches-thumbnails>
   </div>
   <div class="profile__messages">
     <div class="profile__chat-list">
       <app-chat-list [chats]="chats"></app-chat-list>
     </div>
-    <app-messages [messages]="messages"></app-messages>
+    <app-messages [messages]="messages" [pairs$]="pairs$"></app-messages>
   </div>
 </div>

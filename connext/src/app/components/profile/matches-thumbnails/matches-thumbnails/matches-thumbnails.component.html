@@ -1,8 +1,8 @@
 <div class="thumbnails">
-  @for (profile of matches; track $index) {
+  @for (pair of (pairs$ | async); track $index) {
   <div class="thumbnails__profile">
     <div class="thumbnails__image">
-      <img src="{{ profile.image }}" alt="{{ profile.name }}" />
+      <img src="{{ pair.profileImageUrl }}" alt="{{ pair.username }}" />
     </div>
   </div>
   }

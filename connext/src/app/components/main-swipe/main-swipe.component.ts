@@ -34,10 +34,6 @@ export class MainSwipeComponent implements OnInit {
     this.users$ = this.userService.getUsers();
     this.userService.getUsers().subscribe((users) => {
       this.users = users;
-      console.log(this.users);
-    });
-    this.matchService.getPairs().subscribe((pairs) => {
-      console.log('Pairs:', pairs);
     });
   }
 

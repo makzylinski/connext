@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../environment';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +22,6 @@ export class MatchService {
     console.log('Rejected user:', matchId);
   };
 
-  getPairs = () => this.http.get(`${this.baseUrl}/pairs`);
+  getPairs = (): Observable<User[]> =>
+    this.http.get<User[]>(`${this.baseUrl}/pairs`);
 }
