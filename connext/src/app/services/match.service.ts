@@ -19,4 +19,6 @@ export class MatchService {
   rejectUser = (matchId: number) => {
     console.log('Rejected user:', matchId);
   };
+
+  getPairs = () => this.http.get(`${this.baseUrl}/pairs`);
 }
