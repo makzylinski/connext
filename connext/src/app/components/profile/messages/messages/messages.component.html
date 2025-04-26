@@ -2,8 +2,15 @@
   @for (item of messages1; track $index) {
   <div>{{ item }}</div>
   }
-  <input type="text" [(ngModel)]="content" placeholder="Type a message..." />
-  <button (click)="send()">Send</button>
+  <input [(ngModel)]="recipient" placeholder="Wpisz odbiorcę" />
+  <br />
+  <input
+    [(ngModel)]="content"
+    placeholder="Wpisz wiadomość"
+    (keyup.enter)="send()"
+  />
+  <button (click)="send()">Wyślij</button>
+
   @for (message of messages; track $index) {
   <div
     class="messages__message"

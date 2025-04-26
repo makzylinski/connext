@@ -3,27 +3,32 @@ import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ChatService {
-  private socket: WebSocket;
-  private messageSubject = new Subject<string>();
+  private socket: WebSocket | null = null;
+  private messageSubject = new Subject<any>();
   public messages$ = this.messageSubject.asObservable();
 
-  constructor() {
-    this.socket = new WebSocket('ws://localhost:8080/ws');
+  private username: string = '';
 
+  constructor() {}
+
+  connect(username: string) {
+    this.username = username;
+    this.socket = new WebSocket(
+      'ws://localhost:8080/ws?user=' + encodeURIComponent(this.username)
+    );
+
+    this.socket.onopen = () =>
+      console.log('[WebSocket] Połączono jako', this.username);
+    this.socket.onerror = (error) => console.error('[WebSocket] Błąd:', error);
+    this.socket.onclose = () => console.warn('[WebSocket] Rozłączono');
     this.socket.onmessage = (event) => {
-      this.messageSubject.next(event.data);
+      this.messageSubject.next(JSON.parse(event.data));
     };
-
-    this.socket.onopen = () => console.log('[WebSocket] Connected');
-    this.socket.onerror = (err) => console.error('[WebSocket] Error', err);
-    this.socket.onclose = () => console.warn('[WebSocket] Closed');
   }
 
-  sendMessage(msg: string) {
-    if (this.socket.readyState === WebSocket.OPEN) {
-      this.socket.send(msg);
-    } else {
-      console.warn('[WebSocket] Connection not open');
+  sendMessage(sender: string, recipient: string, content: string) {
+    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
+      this.socket.send(JSON.stringify({ sender, recipient, content }));
     }
   }
 }

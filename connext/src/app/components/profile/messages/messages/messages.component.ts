@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
@@ -18,21 +13,24 @@ import { ChatService } from '../../../../services/chat.service';
   styleUrl: './messages.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessagesComponent implements OnInit {
+export class MessagesComponent {
   @Input() messages: any;
   @Input() pairs$: Observable<User[]>;
+  messages1: any[] = [];
   content = '';
-  messages1: any = [];
+  recipient = 'julcia';
+  username = 'maks';
 
   constructor(private chatService: ChatService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.chatService.connect(this.username);
     this.chatService.messages$.subscribe((msg) => this.messages1.push(msg));
   }
 
   send() {
-    if (this.content.trim()) {
-      this.chatService.sendMessage(this.content);
+    if (this.content.trim() && this.recipient.trim()) {
+      this.chatService.sendMessage(this.username, this.recipient, this.content);
       this.content = '';
     }
   }
