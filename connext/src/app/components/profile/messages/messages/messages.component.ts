@@ -18,19 +18,23 @@ export class MessagesComponent {
   @Input() pairs$: Observable<User[]>;
   messages1: any[] = [];
   content = '';
-  recipient = 'julcia';
-  username = 'maks';
+  recipientId = 'julcia';
+  senderId = 'maks';
 
   constructor(private chatService: ChatService) {}
 
   ngOnInit() {
-    this.chatService.connect(this.username);
+    this.chatService.connect(this.senderId);
     this.chatService.messages$.subscribe((msg) => this.messages1.push(msg));
   }
 
   send() {
-    if (this.content.trim() && this.recipient.trim()) {
-      this.chatService.sendMessage(this.username, this.recipient, this.content);
+    if (this.content.trim() && this.recipientId.trim()) {
+      this.chatService.sendMessage(
+        this.senderId,
+        this.recipientId,
+        this.content
+      );
       this.content = '';
     }
   }

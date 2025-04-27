@@ -26,9 +26,10 @@ export class ChatService {
     };
   }
 
-  sendMessage(sender: string, recipient: string, content: string) {
+  sendMessage(senderId: string, recipientId: string, content: string) {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
-      this.socket.send(JSON.stringify({ sender, recipient, content }));
+      this.socket.send(JSON.stringify({ senderId, recipientId, content }));
+      console.log(JSON.stringify({ senderId, recipientId, content }));
     }
   }
 }
