@@ -19,13 +19,18 @@ export class MessagesComponent {
   messages1: any[] = [];
   content = '';
   recipientId: number = 1;
-  senderId: number = 2;
+  senderId: number = 10;
 
   constructor(private chatService: ChatService) {}
 
   ngOnInit() {
-    this.chatService.connect(this.senderId);
+    this.chatService.connect(10);
     this.chatService.messages$.subscribe((msg) => this.messages1.push(msg));
+    this.chatService
+      .getMessagesWithUser(this.recipientId)
+      .subscribe((messages) => {
+        console.log(messages);
+      });
   }
 
   send() {

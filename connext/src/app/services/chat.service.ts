@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { environment } from '../../environment';
+import { Message } from '../models/message.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ChatService {
@@ -8,8 +11,9 @@ export class ChatService {
   public messages$ = this.messageSubject.asObservable();
 
   private senderId: number;
+  private readonly baseUrl = environment.baseUrl + '/api/messages';
 
-  constructor() {}
+  constructor(private readonly http: HttpClient) {}
 
   connect(senderId: number) {
     this.senderId = senderId;
@@ -32,4 +36,7 @@ export class ChatService {
       console.log(JSON.stringify({ senderId, recipientId, content }));
     }
   }
+
+  getMessagesWithUser = (userId: number) =>
+    this.http.get<Message[]>(`${this.baseUrl}/${userId}`);
 }
