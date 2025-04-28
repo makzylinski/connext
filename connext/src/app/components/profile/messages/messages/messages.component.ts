@@ -18,8 +18,8 @@ export class MessagesComponent {
   @Input() pairs$: Observable<User[]>;
   messages1: any[] = [];
   content = '';
-  recipientId = 'julcia';
-  senderId = 'maks';
+  recipientId: number = 1;
+  senderId: number = 2;
 
   constructor(private chatService: ChatService) {}
 
@@ -29,7 +29,7 @@ export class MessagesComponent {
   }
 
   send() {
-    if (this.content.trim() && this.recipientId.trim()) {
+    if (this.content.trim() && this.recipientId) {
       this.chatService.sendMessage(
         this.senderId,
         this.recipientId,

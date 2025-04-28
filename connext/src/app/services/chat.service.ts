@@ -7,18 +7,18 @@ export class ChatService {
   private messageSubject = new Subject<any>();
   public messages$ = this.messageSubject.asObservable();
 
-  private username: string = '';
+  private senderId: number;
 
   constructor() {}
 
-  connect(username: string) {
-    this.username = username;
+  connect(senderId: number) {
+    this.senderId = senderId;
     this.socket = new WebSocket(
-      'ws://localhost:8080/ws?user=' + encodeURIComponent(this.username)
+      'ws://localhost:8080/ws?user=' + encodeURIComponent(this.senderId)
     );
 
     this.socket.onopen = () =>
-      console.log('[WebSocket] Połączono jako', this.username);
+      console.log('[WebSocket] Połączono jako', this.senderId);
     this.socket.onerror = (error) => console.error('[WebSocket] Błąd:', error);
     this.socket.onclose = () => console.warn('[WebSocket] Rozłączono');
     this.socket.onmessage = (event) => {
@@ -26,7 +26,7 @@ export class ChatService {
     };
   }
 
-  sendMessage(senderId: string, recipientId: string, content: string) {
+  sendMessage(senderId: number, recipientId: number, content: string) {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       this.socket.send(JSON.stringify({ senderId, recipientId, content }));
       console.log(JSON.stringify({ senderId, recipientId, content }));
