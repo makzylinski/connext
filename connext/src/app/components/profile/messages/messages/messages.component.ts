@@ -38,11 +38,9 @@ export class MessagesComponent {
       .getMessagesWithUser(this.recipientId)
       .subscribe((messages) => {
         this.messages$.next(messages);
-        console.log('Messages:', messages);
       });
 
     this.chatService.messages$.subscribe((msg) => {
-      console.log('Received message:', msg);
       const newMsg = {
         ...msg,
         id: Date.now() + Math.random(),
