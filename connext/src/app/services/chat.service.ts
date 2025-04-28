@@ -22,9 +22,9 @@ export class ChatService {
     );
 
     this.socket.onopen = () =>
-      console.log('[WebSocket] Połączono jako', this.senderId);
-    this.socket.onerror = (error) => console.error('[WebSocket] Błąd:', error);
-    this.socket.onclose = () => console.warn('[WebSocket] Rozłączono');
+      console.log('[WebSocket] Connected as ', this.senderId);
+    this.socket.onerror = (error) => console.error('[WebSocket] Error:', error);
+    this.socket.onclose = () => console.warn('[WebSocket] Disconnected');
     this.socket.onmessage = (event) => {
       this.messageSubject.next(JSON.parse(event.data));
     };
