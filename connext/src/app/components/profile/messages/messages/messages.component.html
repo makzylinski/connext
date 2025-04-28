@@ -1,23 +1,11 @@
 <div class="messages">
-  @for (item of messages1; track $index) {
-  <div>{{ item }}</div>
-  }
-  <input [(ngModel)]="recipientId" placeholder="Wpisz odbiorcę" />
-  <br />
-  <input
-    [(ngModel)]="content"
-    placeholder="Wpisz wiadomość"
-    (keyup.enter)="send()"
-  />
-  <button (click)="send()">Wyślij</button>
-
-  @for (message of messages; track $index) {
+  @for (item of (messages$ | async); track item.id) {
   <div
     class="messages__message"
-    [ngClass]="{ 'messages__message--from-me': message.fromMe }"
+    [ngClass]="{ 'messages__message--from-me': true }"
   >
     <div class="messages__message-content">
-      {{ message.message }}
+      {{ item.content }}
     </div>
   </div>
   }
@@ -27,8 +15,10 @@
       type="text"
       class="messages__input-field"
       placeholder="Type a message..."
+      (keyup.enter)="send()"
+      [(ngModel)]="content"
     />
-    <button class="messages__input-button">
+    <button class="messages__input-button" (click)="send()">
       <mat-icon>send</mat-icon>
     </button>
   </div>

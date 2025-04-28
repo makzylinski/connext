@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../../../models/user.model';
 import { ChatService } from '../../../../services/chat.service';
 
@@ -14,9 +14,8 @@ import { ChatService } from '../../../../services/chat.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessagesComponent {
-  @Input() messages: any;
   @Input() pairs$: Observable<User[]>;
-  messages1: any[] = [];
+  messages$ = new BehaviorSubject<any[]>([]); // TODO - change to Message[]
   content = '';
   recipientId: number = 1;
   senderId: number = 10;
@@ -25,12 +24,22 @@ export class MessagesComponent {
 
   ngOnInit() {
     this.chatService.connect(10);
-    this.chatService.messages$.subscribe((msg) => this.messages1.push(msg));
     this.chatService
       .getMessagesWithUser(this.recipientId)
       .subscribe((messages) => {
-        console.log(messages);
+        this.messages$.next(messages);
+        console.log('Messages:', messages);
       });
+
+    this.chatService.messages$.subscribe((msg) => {
+      console.log('Received message:', msg);
+      const newMsg = {
+        ...msg,
+        id: Date.now() + Math.random(),
+      };
+
+      this.messages$.next([...this.messages$.getValue(), newMsg]);
+    });
   }
 
   send() {
