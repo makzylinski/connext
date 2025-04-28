@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  output,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../../../../models/user.model';
 
@@ -12,5 +17,8 @@ import { User } from '../../../../models/user.model';
   standalone: true,
 })
 export class MatchesThumbnailsComponent {
+  profileClicked = output<User>();
   @Input() pairs$: Observable<User[]>;
+
+  onProfileSelect = (profile: User) => this.profileClicked.emit(profile);
 }

@@ -1,11 +1,17 @@
 <div class="profile">
   <div class="profile__matches-thumbnails">
-    <app-matches-thumbnails [pairs$]="pairs$"></app-matches-thumbnails>
+    <app-matches-thumbnails
+      [pairs$]="pairs$"
+      (profileClicked)="onSelectedProfile($event)"
+    ></app-matches-thumbnails>
   </div>
   <div class="profile__messages">
     <div class="profile__chat-list">
       <app-chat-list [chats]="chats"></app-chat-list>
     </div>
-    <app-messages [pairs$]="pairs$"></app-messages>
+    <app-messages
+      [selectedProfile]="selectedProfile"
+      [pairs$]="pairs$"
+    ></app-messages>
   </div>
 </div>

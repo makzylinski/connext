@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   messages: Message[];
   chats: any[];
   pairs$: Observable<User[]>;
+  selectedProfile: User;
 
   constructor(
     private readonly messageService: MessageService,
@@ -34,4 +35,6 @@ export class ProfileComponent implements OnInit {
       console.log('Pairs:', pairs);
     });
   }
+
+  onSelectedProfile = (profile: User) => (this.selectedProfile = profile);
 }

@@ -1,5 +1,6 @@
 <div class="messages">
-  @for (item of (messages$ | async); track item.id) {
+  {{ selectedProfile | json }} @for (item of (messages$ | async); track item.id)
+  {
   <div
     class="messages__message"
     [ngClass]="{

@@ -16,6 +16,8 @@ import { UserService } from '../../../../services/user.service';
 })
 export class MessagesComponent {
   @Input() pairs$: Observable<User[]>;
+  @Input() selectedProfile: User;
+
   messages$ = new BehaviorSubject<any[]>([]); // TODO - change to Message[]
   content = '';
   recipientId: number = 10;
