@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../../../models/user.model';
 import { ChatService } from '../../../../services/chat.service';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-messages',
@@ -17,13 +18,20 @@ export class MessagesComponent {
   @Input() pairs$: Observable<User[]>;
   messages$ = new BehaviorSubject<any[]>([]); // TODO - change to Message[]
   content = '';
-  recipientId: number = 1;
-  senderId: number = 10;
+  recipientId: number = 10;
+  senderId: number;
 
-  constructor(private chatService: ChatService) {}
+  constructor(
+    private readonly chatService: ChatService,
+    private readonly userService: UserService
+  ) {}
 
   ngOnInit() {
-    this.chatService.connect(10);
+    this.userService.getUserId().subscribe((userId) => {
+      this.senderId = userId;
+      this.chatService.connect(this.senderId);
+    });
+
     this.chatService
       .getMessagesWithUser(this.recipientId)
       .subscribe((messages) => {

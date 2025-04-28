@@ -2,7 +2,9 @@
   @for (item of (messages$ | async); track item.id) {
   <div
     class="messages__message"
-    [ngClass]="{ 'messages__message--from-me': true }"
+    [ngClass]="{
+      'messages__message--from-me': item.senderId === senderId
+    }"
   >
     <div class="messages__message-content">
       {{ item.content }}
