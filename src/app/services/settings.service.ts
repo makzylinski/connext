@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter, switchMap } from 'rxjs';
-import { environment } from '../../environment';
+import { environment } from '../../environments/environment';
 import { UserService } from './user.service';
 
 @Injectable({
