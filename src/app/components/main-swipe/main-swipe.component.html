@@ -1,0 +1,34 @@
+<mat-card class="profile-card" appearance="outlined">
+  @if ((loggedUser$ | async)?.id !== -1) {
+  {{ (loggedUser$ | async)?.username }} id {{ (loggedUser$ | async)?.id }}
+  } @else {
+  {{ loggedUserFromLocalStorage.username }} id
+  {{ loggedUserFromLocalStorage.id }}
+
+  } @for (u of users$ | async; track u.id; let i = $index) { @if (u && i ===
+  iterator) {
+  <img
+    mat-card-image
+    [src]="
+      u.profileImageUrl
+        ? u.profileImageUrl
+        : 'assets/images/default-profile.png'
+    "
+    alt="Profile picture"
+  />
+  <mat-card-header>{{ u.username }}</mat-card-header>
+  <mat-card-content>
+    <p>
+      {{ u.bio }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button class="profile-card__reject" (click)="rejectUser(+u.id)">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button mat-button class="profile-card__check" (click)="acceptUser(+u.id)">
+      <mat-icon>check</mat-icon>
+    </button>
+  </mat-card-actions>
+  } }
+</mat-card>

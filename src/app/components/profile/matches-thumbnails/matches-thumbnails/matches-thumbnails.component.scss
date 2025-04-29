@@ -1,0 +1,28 @@
+.thumbnails {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+
+  &__profile {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+
+    &:hover {
+      border: 1px solid #3f51b5;
+    }
+  }
+
+  &__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

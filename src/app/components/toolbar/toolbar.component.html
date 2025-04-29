@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="logo" (click)="navigateToHomePage()">Connext</span>
+    <span class="example-spacer"></span>
+    <button mat-button matTooltip="Profile" (click)="navigateToProfile()">
+      <mat-icon>group</mat-icon>
+    </button>
+    <button mat-button matTooltip="Settings" (click)="openSettings()">
+      <mat-icon>settings</mat-icon>
+    </button>
+    @if (!isLoggedIn) {
+    <button mat-button matTooltip="Login">
+      <mat-icon>login</mat-icon>
+    </button>
+    } @else {
+    <button mat-button matTooltip="Logout">
+      <mat-icon>logout</mat-icon>
+    </button>
+    }
+  </mat-toolbar-row>
+</mat-toolbar>
