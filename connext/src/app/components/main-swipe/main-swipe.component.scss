@@ -1,0 +1,19 @@
+.profile-card {
+  max-width: 400px;
+  margin: 10vh auto;
+
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__check {
+    padding: 14px;
+    background-color: #4caf50;
+  }
+
+  &__reject {
+    padding: 14px;
+    background-color: #f44336;
+  }
+}
