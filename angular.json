@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "baseHref": "https://makzylinski.github.io/connext/",
+            "baseHref": "/connext/",
             "outputPath": "dist/connext",
             "index": "src/index.html",
             "browser": "src/main.ts",
