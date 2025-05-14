@@ -25,6 +25,7 @@ export class MessagesComponent implements OnInit, OnChanges {
   @Input() pairs$: Observable<User[]>;
   @Input() selectedProfile: User;
 
+  // currentUsersProfilePicture$: Observable<string>;
   messages$ = new BehaviorSubject<any[]>([]); // TODO - change to Message[]
   content = '';
   recipientId: number;
@@ -46,6 +47,9 @@ export class MessagesComponent implements OnInit, OnChanges {
           console.log(messages);
         });
     }
+
+    // this.currentUsersProfilePicture$ =
+    //   this.userService.getCurrentUsersProfilePicture();
   }
 
   ngOnInit() {

@@ -1,13 +1,33 @@
 <div class="messages">
   @for (item of (messages$ | async); track item.id) {
   <div
-    class="messages__message"
+    class="messages__item"
     [ngClass]="{
-      'messages__message--from-me': item.senderId === senderId
+      'messages__item--from-me': item.sender.id === senderId,
+      'messages__item--from-them': item.sender.id !== senderId
     }"
   >
-    <div class="messages__message-content">
-      {{ item.content }}
+    @if (item.sender.id !== senderId) {
+    <div class="messages__img">
+      <img
+        class="messages__img-avatar"
+        [src]="
+          item.sender.profileImageUrl || '/assets/images/default-profile.png'
+        "
+        alt="Avatar"
+      />
+    </div>
+    }
+    <div
+      class="messages__message"
+      [ngClass]="{
+        'messages__message--from-me': item.sender.id === senderId,
+        'messages__message--from-them': item.sender.id !== senderId
+      }"
+    >
+      <div class="messages__message-content">
+        {{ item.content }}
+      </div>
     </div>
   </div>
   }

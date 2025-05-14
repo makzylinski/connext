@@ -7,6 +7,32 @@
   padding: 10px;
   overflow-y: auto;
 
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+
+    &--from-me {
+      justify-content: flex-end;
+    }
+
+    &--from-them {
+      justify-content: flex-start;
+    }
+  }
+
+  &__img {
+    margin-right: 10px;
+
+    &-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+  }
+
   &__message {
     display: flex;
     flex-direction: column;
