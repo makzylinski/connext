@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import { setUserData } from '../store/user/user.actions';
@@ -33,4 +33,9 @@ export class UserService {
     }
     return JSON.parse(user);
   };
+
+  getCurrentUsersProfilePicture = (): Observable<string> =>
+    this.selectLoggedUser().pipe(
+      map((user) => user.profileImageUrl || 'assets/images/default-profile.png')
+    );
 }
