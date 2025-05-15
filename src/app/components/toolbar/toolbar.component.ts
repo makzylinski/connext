@@ -35,4 +35,9 @@ export class ToolbarComponent {
   navigateToProfile = () => this.router.navigate(['/profile']);
 
   navigateToHomePage = () => this.router.navigate(['/']);
+
+  logout = () => {
+    this.authService.logOut();
+    this.router.navigate(['log-in']);
+  };
 }

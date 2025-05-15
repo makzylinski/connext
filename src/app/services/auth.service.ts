@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { UserCredentials } from '../models/user-credentials.type';
 import { User } from '../models/user.model';
-import { setToken } from '../store/auth/auth.actions';
+import { logOut, setToken } from '../store/auth/auth.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -29,4 +29,10 @@ export class AuthService {
   isLoggedIn = () => !!localStorage.getItem('token');
 
   dispatchToken = (token: string) => this.store.dispatch(setToken({ token }));
+
+  logOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.store.dispatch(logOut());
+  };
 }
