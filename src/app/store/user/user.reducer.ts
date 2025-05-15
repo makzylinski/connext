@@ -11,6 +11,7 @@ export const initialState: UserState = {
     profileImageUrl: '',
     dateOfBirth: new Date(),
     role: '',
+    latestMessage: '',
   },
 };
 

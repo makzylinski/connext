@@ -7,5 +7,6 @@ export const userFactory = (userDetails: any) => {
     profileImageUrl: userDetails?.profileImageUrl || '',
     dateOfBirth: userDetails?.dateOfBirth || new Date(),
     role: userDetails?.role || '',
+    latestMessage: userDetails?.latestMessage || '',
   };
 };

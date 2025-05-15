@@ -31,6 +31,10 @@ export class ProfileComponent implements OnInit {
     this.messages = this.messageService.getMessages();
     this.chats = this.messageService.getChatProfiles();
     this.pairs$ = this.matchService.getPairs();
+
+    this.matchService.getPairs().subscribe((pairs) => {
+      console.log('Pairs:', pairs);
+    });
   }
 
   onSelectedProfile = (profile: User) => (this.selectedProfile = profile);

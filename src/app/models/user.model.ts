@@ -6,4 +6,5 @@ export interface User {
   profileImageUrl: string;
   dateOfBirth: Date;
   role: string;
+  latestMessage: string;
 }
