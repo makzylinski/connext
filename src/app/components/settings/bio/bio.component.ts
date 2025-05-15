@@ -10,6 +10,7 @@ import { SettingsService } from '../../../services/settings.service';
   imports: [FormsModule, MatInputModule, MatFormFieldModule, MatButtonModule],
   templateUrl: './bio.component.html',
   styleUrl: './bio.component.scss',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BioComponent {

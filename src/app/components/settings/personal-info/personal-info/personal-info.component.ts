@@ -19,6 +19,7 @@ import { PersonalInfoService } from '../../../../services/personal-info.service'
   ],
   templateUrl: './personal-info.component.html',
   styleUrl: './personal-info.component.scss',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PersonalInfoComponent implements OnInit {

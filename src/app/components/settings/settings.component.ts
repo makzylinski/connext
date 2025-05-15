@@ -10,6 +10,7 @@ import { Settings } from '../../models/settings.model';
   imports: [CommonModule, MatCardModule, MatIconModule, RouterOutlet],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {

@@ -19,6 +19,7 @@ import { UserService } from '../../../../services/user.service';
   imports: [CommonModule, MatIconModule, FormsModule],
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.scss',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessagesComponent implements OnInit, OnChanges {
