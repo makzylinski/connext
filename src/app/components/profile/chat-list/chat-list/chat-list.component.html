@@ -1,11 +1,11 @@
 <div class="chat">
   <ul class="chat__list">
-    @for (chat of chats; track $index) {
+    @for (chat of (pairs$ | async); track $index) {
     <li class="chat__list-element">
-      <img src="{{ chat.image }}" alt="{{ chat.name }}" />
+      <img src="{{ chat.profileImageUrl }}" alt="{{ chat.username }}" />
       <div class="chat__list-element__details">
-        <h3>{{ chat.name }}</h3>
-        <p>{{ chat.lastMessage }}</p>
+        <h3>{{ chat.username }}</h3>
+        <p>chat.lastMessage</p>
       </div>
     </li>
     }
