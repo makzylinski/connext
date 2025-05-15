@@ -6,6 +6,7 @@
       matInput
       data-test-id="login-name-input"
       placeholder="Joe Doe"
+      autocomplete="username"
       formControlName="username"
       required
     />
@@ -23,6 +24,7 @@
       matInput
       data-test-id="login-password-input"
       [type]="hide() ? 'password' : 'text'"
+      autocomplete="current-password"
       formControlName="password"
     />
 
