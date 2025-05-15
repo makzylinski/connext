@@ -7,6 +7,7 @@ import { AccountSettingsComponent } from './components/settings/account-settings
 import { SettingsComponent } from './components/settings/settings.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LoggedInGuard } from './guards/loggedIn.guard';
 
 export const routes: Routes = [
   {
@@ -37,10 +38,12 @@ export const routes: Routes = [
   {
     path: 'sign-up',
     component: SignUpComponent,
+    canActivate: [LoggedInGuard],
   },
   {
     path: 'log-in',
     component: LogInComponent,
+    canActivate: [LoggedInGuard],
   },
   {
     path: '**',
