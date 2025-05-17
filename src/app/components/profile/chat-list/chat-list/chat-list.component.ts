@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  output,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../../../../models/user.model';
 
@@ -13,4 +18,7 @@ import { User } from '../../../../models/user.model';
 })
 export class ChatListComponent {
   @Input() pairs$: Observable<User[]>;
+  profileClicked = output<User>();
+
+  onProfileSelect = (profile: User) => this.profileClicked.emit(profile);
 }

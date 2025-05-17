@@ -1,7 +1,7 @@
 <div class="chat">
   <ul class="chat__list">
     @for (chat of (pairs$ | async); track $index) {
-    <li class="chat__list-element">
+    <li class="chat__list-element" (click)="onProfileSelect(chat)">
       <img src="{{ chat.profileImageUrl }}" alt="{{ chat.username }}" />
       <div class="chat__list-element__details">
         <h3>{{ chat.username }}</h3>
