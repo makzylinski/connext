@@ -6,6 +6,7 @@ import { FileUploadService } from '../../services/file-upload.service';
   imports: [],
   templateUrl: './photo-upload.component.html',
   styleUrl: './photo-upload.component.scss',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoUploadComponent {

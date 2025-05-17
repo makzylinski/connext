@@ -18,6 +18,7 @@ import { AuthService } from '../../services/auth.service';
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarComponent {
