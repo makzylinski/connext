@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatDialogActions,
@@ -6,6 +13,9 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-creation-user-modal',
@@ -15,6 +25,11 @@ import {
     MatDialogActions,
     MatDialogClose,
     MatButtonModule,
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
   ],
 
   templateUrl: './creation-user-modal.component.html',
@@ -22,4 +37,16 @@ import {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreationUserModalComponent {}
+export class CreationUserModalComponent implements OnInit {
+  userForm: FormGroup;
+
+  constructor(private readonly fb: FormBuilder) {}
+  onSubmit = () => null;
+
+  ngOnInit(): void {
+    this.userForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
+}

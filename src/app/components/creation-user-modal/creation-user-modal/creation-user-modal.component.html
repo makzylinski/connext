@@ -1,8 +1,29 @@
-<h2 mat-dialog-title>Dialog with elements</h2>
-<mat-dialog-content
-  >This dialog showcases the title, close, content and actions
-  elements.</mat-dialog-content
->
+<h2 mat-dialog-title>Please, fill in the info</h2>
+<mat-dialog-content>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="log-in-form">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+
+      <input
+        matInput
+        data-test-id="login-name-input"
+        placeholder="Joe Doe"
+        autocomplete="username"
+        formControlName="username"
+        required
+      />
+    </mat-form-field>
+
+    <button
+      type="submit"
+      [disabled]="!userForm.valid"
+      data-test-id="login-submit-button"
+      class="log-in-button"
+    >
+      Log In
+    </button>
+  </form>
+</mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
