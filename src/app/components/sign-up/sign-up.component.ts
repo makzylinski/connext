@@ -9,6 +9,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -28,7 +29,8 @@ import { AuthService } from '../../services/auth.service';
 export class SignUpComponent {
   constructor(
     private readonly fb: FormBuilder,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly router: Router
   ) {}
 
   hide = signal(true);
@@ -48,6 +50,7 @@ export class SignUpComponent {
         this.signUpForm.reset();
         alert('User created!');
       });
+      this.router.navigate(['/log-in'], { queryParams: { firstLogin: true } });
     } else {
       console.log('Form is invalid');
     }

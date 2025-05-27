@@ -9,7 +9,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
@@ -37,13 +37,23 @@ export class LogInComponent {
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly userService: UserService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
+    });
+
+    this.route.queryParams.subscribe((params) => {
+      const firstLogin = params['firstLogin'] === 'true';
+      if (firstLogin) {
+        localStorage.setItem('isFirstLogin', 'true');
+      } else {
+        localStorage.removeItem('isFirstLogin');
+      }
     });
   }
 

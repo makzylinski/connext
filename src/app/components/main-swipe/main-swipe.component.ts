@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { MatchService } from '../../services/match.service';
 import { UserService } from '../../services/user.service';
+import { CreationUserModalComponent } from '../creation-user-modal/creation-user-modal/creation-user-modal.component';
 
 @Component({
   selector: 'app-main-swipe',
@@ -24,7 +26,8 @@ export class MainSwipeComponent implements OnInit {
   iterator: number = 0;
   constructor(
     private readonly userService: UserService,
-    private readonly matchService: MatchService
+    private readonly matchService: MatchService,
+    private readonly dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +38,16 @@ export class MainSwipeComponent implements OnInit {
     this.userService.getUsers().subscribe((users) => {
       this.users = users;
     });
+
+    const isFirstLogin = localStorage.getItem('isFirstLogin') ? true : false;
+
+    if (isFirstLogin) {
+      this.dialog.open(CreationUserModalComponent);
+    }
+  }
+
+  openDialog() {
+    this.dialog.open(CreationUserModalComponent);
   }
 
   acceptUser = (matchId: number): void => {
