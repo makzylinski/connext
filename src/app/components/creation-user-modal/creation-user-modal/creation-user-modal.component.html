@@ -2,26 +2,17 @@
 <mat-dialog-content>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="log-in-form">
     <mat-form-field>
-      <mat-label>Username</mat-label>
+      <mat-label>Bio</mat-label>
 
-      <input
+      <textarea
         matInput
-        data-test-id="login-name-input"
-        placeholder="Joe Doe"
-        autocomplete="username"
-        formControlName="username"
-        required
-      />
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"
+        formControlName="bio"
+      ></textarea>
     </mat-form-field>
-
-    <button
-      type="submit"
-      [disabled]="!userForm.valid"
-      data-test-id="login-submit-button"
-      class="log-in-button"
-    >
-      Log In
-    </button>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>

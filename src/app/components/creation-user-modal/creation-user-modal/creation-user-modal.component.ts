@@ -45,7 +45,7 @@ export class CreationUserModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
-      username: ['', Validators.required],
+      bio: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
