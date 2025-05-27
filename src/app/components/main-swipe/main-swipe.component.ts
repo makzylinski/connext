@@ -42,6 +42,7 @@ export class MainSwipeComponent implements OnInit {
     const isFirstLogin = localStorage.getItem('isFirstLogin') ? true : false;
 
     if (isFirstLogin) {
+      this.dialog.open(CreationUserModalComponent);
     }
   }
 
