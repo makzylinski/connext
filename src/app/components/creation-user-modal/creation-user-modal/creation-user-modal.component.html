@@ -2,6 +2,8 @@
 <mat-dialog-content>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="log-in-form">
     <mat-form-field>
+      <mat-label>Upload photo</mat-label>
+      <app-photo-upload></app-photo-upload>
       <mat-label>Bio</mat-label>
 
       <textarea

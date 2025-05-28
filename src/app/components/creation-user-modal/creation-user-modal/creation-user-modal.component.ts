@@ -16,6 +16,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { PhotoUploadComponent } from '../../photo-upload/photo-upload.component';
 
 @Component({
   selector: 'app-creation-user-modal',
@@ -30,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    PhotoUploadComponent,
   ],
 
   templateUrl: './creation-user-modal.component.html',
