@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { PhotoUploadComponent } from '../../components/photo-upload/photo-upload.component';
 
 @Component({
   selector: 'app-steps-container',
-  imports: [],
+  imports: [PhotoUploadComponent],
   templateUrl: './steps-container.component.html',
   styleUrl: './steps-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
