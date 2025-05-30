@@ -16,7 +16,6 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { PhotoUploadComponent } from '../../components/photo-upload/photo-upload.component';
 import { StepsContainerComponent } from '../steps-container/steps-container.component';
 
 @Component({
@@ -32,7 +31,6 @@ import { StepsContainerComponent } from '../steps-container/steps-container.comp
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    PhotoUploadComponent,
     StepsContainerComponent,
   ],
 
@@ -43,6 +41,7 @@ import { StepsContainerComponent } from '../steps-container/steps-container.comp
 })
 export class CreationUserModalComponent implements OnInit {
   userForm: FormGroup;
+  stepsConfig: Array<{ step: number; name: string; header: string }>;
 
   constructor(private readonly fb: FormBuilder) {}
   onSubmit = () => null;
@@ -52,5 +51,23 @@ export class CreationUserModalComponent implements OnInit {
       bio: ['', Validators.required],
       password: ['', Validators.required],
     });
+
+    this.stepsConfig = [
+      {
+        step: 0,
+        name: 'bio',
+        header: 'Input your bio',
+      },
+      {
+        step: 1,
+        name: 'profile picture',
+        header: 'Input your picture',
+      },
+      {
+        step: 2,
+        name: 'date of birth',
+        header: 'Input your date of birth',
+      },
+    ];
   }
 }
