@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { MatchService } from '../../services/match.service';
 import { UserService } from '../../services/user.service';
-import { CreationUserModalComponent } from '../creation-user-modal/creation-user-modal/creation-user-modal.component';
+import { CreationUserModalComponent } from '../../shared/creation-user-modal/creation-user-modal.component';
 
 @Component({
   selector: 'app-main-swipe',
