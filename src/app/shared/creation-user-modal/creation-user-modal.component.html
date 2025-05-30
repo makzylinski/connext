@@ -2,9 +2,12 @@
 <mat-dialog-content>
   <app-steps-container
     [steps]="stepsConfig"
-    [currentStep]="0"
+    [currentStep]="currentStep"
   ></app-steps-container>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
+  <button mat-button (click)="onNextStepClick()">
+    <mat-icon>arrow_forward_ios</mat-icon>
+  </button>
 </mat-dialog-actions>

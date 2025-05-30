@@ -42,6 +42,7 @@ import { StepsContainerComponent } from '../steps-container/steps-container.comp
 export class CreationUserModalComponent implements OnInit {
   userForm: FormGroup;
   stepsConfig: Array<{ step: number; name: string; header: string }>;
+  currentStep: number = 0;
 
   constructor(private readonly fb: FormBuilder) {}
   onSubmit = () => null;
@@ -70,4 +71,10 @@ export class CreationUserModalComponent implements OnInit {
       },
     ];
   }
+
+  onNextStepClick = () => {
+    if (this.currentStep < this.stepsConfig.length - 1) {
+      this.currentStep++;
+    }
+  };
 }
