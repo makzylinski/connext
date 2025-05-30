@@ -1,21 +1,23 @@
 <h2 mat-dialog-title>Please, fill in the info</h2>
 <mat-dialog-content>
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="log-in-form">
-    <mat-form-field>
-      <mat-label>Upload photo</mat-label>
-      <app-photo-upload></app-photo-upload>
-      <mat-label>Bio</mat-label>
+  <app-steps-container>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="log-in-form">
+      <mat-form-field>
+        <mat-label>Upload photo</mat-label>
+        <app-photo-upload></app-photo-upload>
+        <mat-label>Bio</mat-label>
 
-      <textarea
-        matInput
-        cdkTextareaAutosize
-        #autosize="cdkTextareaAutosize"
-        cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="5"
-        formControlName="bio"
-      ></textarea>
-    </mat-form-field>
-  </form>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+          formControlName="bio"
+        ></textarea>
+      </mat-form-field>
+    </form>
+  </app-steps-container>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
