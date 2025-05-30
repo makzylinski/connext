@@ -1,5 +1,11 @@
 <div class="steps">
-  @for (step of steps; track $index) {
-  <div class="steps__content">test</div>
-  }
+  <div class="steps__content">
+    @switch (currentStep) { @case (0) {
+    <p>zero</p>
+    } @case (1) {
+    <p>jeden</p>
+    } @case (2) {
+    <p>dwa</p>
+    } }
+  </div>
 </div>
