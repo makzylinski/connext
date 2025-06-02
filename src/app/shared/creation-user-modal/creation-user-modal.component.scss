@@ -8,4 +8,11 @@
       cursor: pointer;
     }
   }
+
+  &__body {
+    &--actions {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
