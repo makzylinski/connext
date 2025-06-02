@@ -1,9 +1,5 @@
 <input type="file" (change)="onFileSelected($event)" />
 <button (click)="onUpload()">Upload</button>
 @if (imagePreview) {
-<img
-  [src]="imagePreview"
-  alt="Preview"
-  style="max-width: 300px; margin-top: 10px"
-/>
+<img class="image-preview" [src]="imagePreview" alt="Preview" />
 }
