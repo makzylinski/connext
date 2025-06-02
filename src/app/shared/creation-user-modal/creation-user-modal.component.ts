@@ -77,4 +77,10 @@ export class CreationUserModalComponent implements OnInit {
       this.currentStep++;
     }
   };
+
+  onPrevStepClick = () => {
+    if (this.currentStep !== 0) {
+      this.currentStep--;
+    }
+  };
 }

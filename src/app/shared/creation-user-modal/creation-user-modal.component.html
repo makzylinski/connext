@@ -1,17 +1,36 @@
-<h2 mat-dialog-title>Please, fill in the info</h2>
-<mat-dialog-content>
-  <app-steps-container
-    [steps]="stepsConfig"
-    [currentStep]="currentStep"
-  ></app-steps-container>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-  <button
-    mat-button
-    [disabled]="currentStep === stepsConfig.length - 1"
-    (click)="onNextStepClick()"
-  >
-    <mat-icon>arrow_forward_ios</mat-icon>
-  </button>
-</mat-dialog-actions>
+<div class="modal">
+  <div class="modal__header">
+    <h2 mat-dialog-title>Please, fill in the info</h2>
+    <mat-icon mat-button mat-dialog-close class="modal__header--close"
+      >close</mat-icon
+    >
+  </div>
+
+  <mat-dialog-content class="modal__body">
+    <app-steps-container
+      [steps]="stepsConfig"
+      [currentStep]="currentStep"
+    ></app-steps-container>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="modal__footer">
+    <button
+      mat-button
+      [disabled]="currentStep === 0"
+      (click)="onPrevStepClick()"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    @if (currentStep !== stepsConfig.length -1) {
+    <button
+      mat-button
+      [disabled]="currentStep === stepsConfig.length - 1"
+      (click)="onNextStepClick()"
+    >
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+    } @else {
+    <button mat-button>Submit</button>
+    }
+  </mat-dialog-actions>
+</div>
