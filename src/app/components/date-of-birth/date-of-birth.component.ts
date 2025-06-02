@@ -12,4 +12,11 @@ import { MatInputModule } from '@angular/material/input';
   imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateOfBirthComponent {}
+export class DateOfBirthComponent {
+  filterPastDates = (date: Date | null): boolean => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return date !== null && date < today;
+  };
+}
