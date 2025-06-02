@@ -16,8 +16,8 @@
         <button
           class="modal__body--actions-back"
           mat-button
-          [disabled]="currentStep === stepsConfig.length - 1"
-          (click)="onNextStepClick()"
+          [disabled]="currentStep === 0"
+          (click)="onPrevStepClick()"
         >
           <mat-icon>arrow_back_ios</mat-icon>
         </button>
