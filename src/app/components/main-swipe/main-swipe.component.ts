@@ -42,12 +42,20 @@ export class MainSwipeComponent implements OnInit {
     const isFirstLogin = localStorage.getItem('isFirstLogin') ? true : false;
 
     if (isFirstLogin) {
-      this.dialog.open(CreationUserModalComponent);
+      this.dialog.open(CreationUserModalComponent, {
+        width: '550px',
+        height: '360px',
+        panelClass: 'modal',
+      });
     }
   }
 
   openDialog() {
-    this.dialog.open(CreationUserModalComponent);
+    this.dialog.open(CreationUserModalComponent, {
+      width: '550px',
+      height: '360px',
+      panelClass: 'modal',
+    });
   }
 
   acceptUser = (matchId: number): void => {
