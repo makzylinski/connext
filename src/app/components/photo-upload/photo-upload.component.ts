@@ -42,9 +42,11 @@ export class PhotoUploadComponent {
       this.fileUploadService.uploadProfileImage(this.selectedFile).subscribe(
         (response) => {
           console.log('File uploaded successfully:', response);
+          this.fileUploadService.updatePhotoValidation(true);
         },
         (error) => {
           console.error('Error uploading file:', error);
+          this.fileUploadService.updatePhotoValidation(false);
         }
       );
     }

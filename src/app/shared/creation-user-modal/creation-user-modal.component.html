@@ -14,6 +14,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions class="modal__footer">
+    {{ isPhotoStepValidated$ | async }}
     <button
       mat-button
       [disabled]="currentStep === 0"
@@ -24,7 +25,10 @@
     @if (currentStep !== stepsConfig.length -1) {
     <button
       mat-button
-      [disabled]="currentStep === stepsConfig.length - 1"
+      [disabled]="
+        currentStep === stepsConfig.length - 1 ||
+        !(isPhotoStepValidated$ | async)
+      "
       (click)="onNextStepClick()"
     >
       <mat-icon>arrow_forward_ios</mat-icon>
