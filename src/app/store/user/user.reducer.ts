@@ -13,6 +13,11 @@ export const initialState: UserState = {
     role: '',
     latestMessage: '',
   },
+  firstLoginData: {
+    photoUrl: '',
+    bio: '',
+    dateOfBirth: new Date(),
+  },
 };
 
 export const userReducer = createReducer(
