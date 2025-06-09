@@ -1,5 +1,20 @@
-<input type="file" (change)="onFileSelected($event)" />
-<button (click)="onUpload()">Upload</button>
-@if (imagePreview) {
-<img class="image-preview" [src]="imagePreview" alt="Preview" />
-}
+<div class="upload">
+  <input #fileInput type="file" (change)="onFileSelected($event)" hidden />
+
+  <img class="upload__preview" [src]="imagePreview" />
+
+  <div class="upload__buttons">
+    <button mat-raised-button color="primary" (click)="fileInput.click()">
+      Select file
+    </button>
+
+    <button
+      mat-raised-button
+      color="accent"
+      [disabled]="!selectedFile"
+      (click)="onUpload()"
+    >
+      Upload
+    </button>
+  </div>
+</div>

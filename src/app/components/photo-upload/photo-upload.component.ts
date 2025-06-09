@@ -2,12 +2,14 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  NgZone,
 } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { FileUploadService } from '../../services/file-upload.service';
 
 @Component({
   selector: 'app-photo-upload',
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './photo-upload.component.html',
   styleUrl: './photo-upload.component.scss',
   standalone: true,
@@ -15,11 +17,13 @@ import { FileUploadService } from '../../services/file-upload.service';
 })
 export class PhotoUploadComponent {
   selectedFile: File | null = null;
-  imagePreview: string | ArrayBuffer | null = null;
+  imagePreview: string | ArrayBuffer | null =
+    'assets/images/default-profile.png';
 
   constructor(
     private readonly fileUploadService: FileUploadService,
-    private readonly cdRef: ChangeDetectorRef
+    private readonly cdRef: ChangeDetectorRef,
+    private readonly ngZone: NgZone
   ) {}
 
   onFileSelected(event: Event): void {
@@ -30,13 +34,16 @@ export class PhotoUploadComponent {
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagePreview = reader.result;
-        this.cdRef.markForCheck();
+        this.ngZone.run(() => {
+          this.imagePreview = reader.result;
+          this.cdRef.markForCheck();
+        });
       };
 
       reader.readAsDataURL(this.selectedFile);
     }
   }
+
   onUpload(): void {
     if (this.selectedFile) {
       this.fileUploadService.uploadProfileImage(this.selectedFile).subscribe(
