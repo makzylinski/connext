@@ -6,6 +6,8 @@ import {
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FileUploadService } from '../../services/file-upload.service';
+import { Toast } from '../../shared/toast/toast';
+import { ToastService } from '../../shared/toast/toast.service';
 
 @Component({
   selector: 'app-photo-upload',
@@ -23,7 +25,8 @@ export class PhotoUploadComponent {
   constructor(
     private readonly fileUploadService: FileUploadService,
     private readonly cdRef: ChangeDetectorRef,
-    private readonly ngZone: NgZone
+    private readonly ngZone: NgZone,
+    private readonly toastService: ToastService
   ) {}
 
   onFileSelected(event: Event): void {
@@ -50,6 +53,7 @@ export class PhotoUploadComponent {
         (response) => {
           console.log('File uploaded successfully:', response);
           this.fileUploadService.updatePhotoValidation(true);
+          this.toastService.open(Toast.SUCCESS, 'Zapisano poprawnie');
         },
         (error) => {
           console.error('Error uploading file:', error);
