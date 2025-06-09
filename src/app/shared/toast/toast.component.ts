@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { Toast } from './toast';
 import { ToastService } from './toast.service';
 
 @Component({
   selector: 'app-toast',
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
