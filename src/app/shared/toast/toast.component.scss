@@ -7,6 +7,24 @@
   width: 320px;
   display: flex;
 
+  &--success {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+  }
+
+  &--info {
+    background-color: #d1ecf1;
+    border-color: #17a2b8;
+    color: #0c5460;
+  }
+
+  &--error {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+  }
+
   &__icon {
     display: flex;
     align-self: center;

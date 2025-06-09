@@ -1,4 +1,11 @@
-<div class="toast">
+<div
+  class="toast"
+  [ngClass]="{
+    'toast--success': type === 0,
+    'toast--info': type === 1,
+    'toast--error': type === 2
+  }"
+>
   <div class="toast__icon">
     <mat-icon>check</mat-icon>
   </div>

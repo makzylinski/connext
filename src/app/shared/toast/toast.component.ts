@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -9,7 +10,7 @@ import { ToastService } from './toast.service';
 
 @Component({
   selector: 'app-toast',
-  imports: [MatIconModule],
+  imports: [MatIconModule, CommonModule],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
   standalone: true,
