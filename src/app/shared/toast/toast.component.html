@@ -24,7 +24,7 @@
     <div class="toast__content--header">
       @if (type === 0) { Success! } @if (type === 1) { Info } @if (type === 2) {
       Error }
-      <mat-icon class="toast__content--header-close" (click)="(closeToast)"
+      <mat-icon class="toast__content--header-close" (click)="closeToast()"
         >close</mat-icon
       >
     </div>
