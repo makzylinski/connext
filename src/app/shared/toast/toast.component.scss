@@ -31,9 +31,17 @@
 
   &__content {
     padding: 5px;
+    width: 100%;
 
     &--header {
       font-weight: 700;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      &-close {
+        cursor: pointer;
+      }
     }
   }
 }

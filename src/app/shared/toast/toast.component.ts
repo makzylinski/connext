@@ -40,4 +40,6 @@ export class ToastComponent {
       this.visible = false;
     }, 3000);
   }
+
+  closeToast = () => (this.visible = false);
 }
