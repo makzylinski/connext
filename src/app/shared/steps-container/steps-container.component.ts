@@ -14,6 +14,4 @@ import { BioComponent } from '../../components/settings/bio/bio.component';
 export class StepsContainerComponent {
   @Input() steps: Array<{ step: number; name: string; header: string }>;
   @Input() currentStep: number;
-
-  // currentStep:
 }
