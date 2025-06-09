@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { UserService } from './user.service';
 
@@ -8,6 +9,9 @@ import { UserService } from './user.service';
 })
 export class FileUploadService {
   private readonly baseUrl = environment.baseUrl + '/api';
+
+  isPhotoUploaded$ = new BehaviorSubject<boolean>(false);
+  photoValidation = this.isPhotoUploaded$.asObservable();
 
   constructor(
     private readonly http: HttpClient,
@@ -47,6 +51,9 @@ export class FileUploadService {
       responseType: 'text',
     });
   };
-  //const params = new HttpParams().set('userId', userId.toString());
-  //return this.http.get<string>(`${this.baseUrl}/api/users/profileImage`, { params });
+
+  updatePhotoValidation = (isPhotoUploaded: boolean) => {
+    console.log(isPhotoUploaded);
+    this.isPhotoUploaded$.next(isPhotoUploaded);
+  };
 }

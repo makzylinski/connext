@@ -1,11 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatDialogActions,
@@ -16,6 +11,8 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Observable } from 'rxjs';
+import { FileUploadService } from '../../services/file-upload.service';
 import { StepsContainerComponent } from '../steps-container/steps-container.component';
 
 @Component({
@@ -43,16 +40,13 @@ export class CreationUserModalComponent implements OnInit {
   userForm: FormGroup;
   stepsConfig: Array<{ step: number; name: string; header: string }>;
   currentStep: number = 0;
+  isPhotoStepValidated$: Observable<boolean>;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(private readonly fileUploadService: FileUploadService) {}
+
   onSubmit = () => null;
 
   ngOnInit(): void {
-    this.userForm = this.fb.group({
-      bio: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-
     this.stepsConfig = [
       {
         step: 0,
@@ -70,6 +64,8 @@ export class CreationUserModalComponent implements OnInit {
         header: 'Input your date of birth',
       },
     ];
+
+    this.isPhotoStepValidated$ = this.fileUploadService.photoValidation;
   }
 
   onNextStepClick = () => {
