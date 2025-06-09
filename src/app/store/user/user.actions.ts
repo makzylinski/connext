@@ -7,6 +7,11 @@ export const setUserData = createAction(
   props<{ user: User }>()
 );
 
+export const setFirstLoginPhotoUrl = createAction(
+  '[User] Set First Login Photo Url',
+  props<{ photoUrl: string }>()
+);
+
 export const setFirstLoginData = createAction(
   '[User] Set First Login Data',
   props<{ firstLoginData: firstLoginData }>()

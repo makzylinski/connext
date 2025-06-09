@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
-import { setUserData } from '../store/user/user.actions';
+import { setFirstLoginPhotoUrl, setUserData } from '../store/user/user.actions';
 import { selectUser, selectUserId } from '../store/user/user.selectors';
 
 @Injectable({
@@ -38,4 +38,7 @@ export class UserService {
     this.selectLoggedUser().pipe(
       map((user) => user.profileImageUrl || 'assets/images/default-profile.png')
     );
+
+  dispatchFirstLoginPhotoUrl = (photoUrl: string) =>
+    this.store.dispatch(setFirstLoginPhotoUrl({ photoUrl }));
 }

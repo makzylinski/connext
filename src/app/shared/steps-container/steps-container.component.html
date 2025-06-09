@@ -2,7 +2,9 @@
   <div class="steps__content">
     @switch (currentStep) { @case (0) {
     <div class="steps__content-one">
-      <app-photo-upload></app-photo-upload>
+      <app-photo-upload
+        (selectedPictureUrl)="onSelectedPhoto($event)"
+      ></app-photo-upload>
     </div>
     } @case (1) {
     <div class="steps__content-two">

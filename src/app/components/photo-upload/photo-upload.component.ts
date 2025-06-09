@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   NgZone,
+  output,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FileUploadService } from '../../services/file-upload.service';
@@ -22,6 +23,7 @@ export class PhotoUploadComponent {
   imagePreview: string | ArrayBuffer | null =
     'assets/images/default-profile.png';
 
+  selectedPictureUrl = output<string>();
   constructor(
     private readonly fileUploadService: FileUploadService,
     private readonly cdRef: ChangeDetectorRef,
@@ -53,6 +55,7 @@ export class PhotoUploadComponent {
         (response) => {
           console.log('File uploaded successfully:', response);
           this.fileUploadService.updatePhotoValidation(true);
+          this.selectedPictureUrl.emit(response);
           this.toastService.open(Toast.SUCCESS, 'Zapisano poprawnie');
         },
         (error) => {
