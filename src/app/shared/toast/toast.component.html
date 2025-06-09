@@ -7,7 +7,17 @@
   }"
 >
   <div class="toast__icon">
-    <mat-icon>check</mat-icon>
+    <mat-icon>
+      {{
+        type === 0
+          ? "check"
+          : type === 1
+          ? "info"
+          : type === 2
+          ? "error"
+          : "notifications"
+      }}
+    </mat-icon>
   </div>
   <div class="toast__content">
     <div class="toast__content--header">
