@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Toast } from './toast';
 import { ToastService } from './toast.service';
@@ -8,12 +12,14 @@ import { ToastService } from './toast.service';
   imports: [MatIconModule],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent {
-  constructor(private readonly toastService: ToastService) {}
-
-  @ViewChild('toastRef') toastRef!: ToastComponent;
+  constructor(
+    private readonly toastService: ToastService,
+    private readonly cdRef: ChangeDetectorRef
+  ) {}
 
   message = '';
   visible = false;
@@ -27,7 +33,10 @@ export class ToastComponent {
     this.type = type;
     this.message = message;
     this.visible = true;
+    this.cdRef.detectChanges();
 
-    setTimeout(() => (this.visible = false), 3000);
+    setTimeout(() => {
+      this.visible = false;
+    }, 3000);
   }
 }

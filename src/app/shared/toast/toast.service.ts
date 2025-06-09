@@ -12,6 +12,7 @@ export class ToastService {
   register(toast: ToastComponent) {
     this.toastComponent = toast;
   }
+
   open(type: Toast, message: string): void {
     this.toastComponent?.show(type, message);
   }
