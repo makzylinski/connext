@@ -1,11 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Observable } from 'rxjs';
+import { map, Observable, take } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import { setFirstLoginPhotoUrl, setUserData } from '../store/user/user.actions';
-import { selectUser, selectUserId } from '../store/user/user.selectors';
+import {
+  selectFirstLoginPhotoUrl,
+  selectUser,
+  selectUserId,
+} from '../store/user/user.selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -19,12 +23,18 @@ export class UserService {
   ) {}
 
   selectLoggedUser = (): Observable<User> => this.store.select(selectUser);
-
-  getUsers = (): Observable<User[]> => this.http.get<User[]>(`${this.baseUrl}`);
+  getUserId = (): Observable<number> => this.store.select(selectUserId);
+  getFirstLoginPhotoUrl = (): Observable<string> =>
+    this.store.select(selectFirstLoginPhotoUrl).pipe(
+      take(1),
+      map((photoUrl) => photoUrl || '')
+    );
 
   dispatchUser = (user: User) => this.store.dispatch(setUserData({ user }));
+  dispatchFirstLoginPhotoUrl = (photoUrl: string) =>
+    this.store.dispatch(setFirstLoginPhotoUrl({ photoUrl }));
 
-  getUserId = (): Observable<number> => this.store.select(selectUserId);
+  getUsers = (): Observable<User[]> => this.http.get<User[]>(`${this.baseUrl}`);
 
   getLoggedUserFromLocalStorage = (): User => {
     const user = localStorage.getItem('user');
@@ -38,7 +48,4 @@ export class UserService {
     this.selectLoggedUser().pipe(
       map((user) => user.profileImageUrl || 'assets/images/default-profile.png')
     );
-
-  dispatchFirstLoginPhotoUrl = (photoUrl: string) =>
-    this.store.dispatch(setFirstLoginPhotoUrl({ photoUrl }));
 }

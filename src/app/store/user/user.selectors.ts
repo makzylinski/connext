@@ -2,8 +2,6 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { UserState } from './user-state.model';
 
 export const selectUserState = createFeatureSelector<UserState>('user');
-export const selectFirstLoginDataState =
-  createFeatureSelector<UserState>('firstLoginData');
 
 export const selectUser = createSelector(
   selectUserState,
@@ -16,16 +14,16 @@ export const selectUserId = createSelector(
 );
 
 export const selectFirstLoginPhotoUrl = createSelector(
-  selectFirstLoginDataState,
+  selectUserState,
   (state: UserState) => state.firstLoginData?.photoUrl
 );
 
 export const selectFirstLoginBio = createSelector(
-  selectFirstLoginDataState,
+  selectUserState,
   (state: UserState) => state.firstLoginData?.bio
 );
 
 export const selectFirstLoginDateOfBirth = createSelector(
-  selectFirstLoginDataState,
+  selectUserState,
   (state: UserState) => state.firstLoginData?.dateOfBirth
 );
