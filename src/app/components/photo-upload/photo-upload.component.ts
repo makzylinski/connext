@@ -58,6 +58,7 @@ export class PhotoUploadComponent {
         (error) => {
           console.error('Error uploading file:', error);
           this.fileUploadService.updatePhotoValidation(false);
+          this.toastService.open(Toast.ERROR, 'Błąd podczas zapisu.');
         }
       );
     }
