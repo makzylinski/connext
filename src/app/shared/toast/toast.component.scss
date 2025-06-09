@@ -1,0 +1,47 @@
+.toast {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  height: 60px;
+  width: 320px;
+  display: flex;
+
+  &--success {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+  }
+
+  &--info {
+    background-color: #d1ecf1;
+    border-color: #17a2b8;
+    color: #0c5460;
+  }
+
+  &--error {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+  }
+
+  &__icon {
+    display: flex;
+    align-self: center;
+  }
+
+  &__content {
+    padding: 5px;
+    width: 100%;
+
+    &--header {
+      font-weight: 700;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      &-close {
+        cursor: pointer;
+      }
+    }
+  }
+}

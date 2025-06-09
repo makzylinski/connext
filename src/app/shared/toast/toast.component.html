@@ -1,0 +1,35 @@
+@if (visible) {
+<div
+  class="toast"
+  [ngClass]="{
+    'toast--success': type === 0,
+    'toast--info': type === 1,
+    'toast--error': type === 2
+  }"
+>
+  <div class="toast__icon">
+    <mat-icon>
+      {{
+        type === 0
+          ? "check"
+          : type === 1
+          ? "info"
+          : type === 2
+          ? "error"
+          : "notifications"
+      }}
+    </mat-icon>
+  </div>
+  <div class="toast__content">
+    <div class="toast__content--header">
+      @if (type === 0) { Success! } @if (type === 1) { Info } @if (type === 2) {
+      Error }
+      <mat-icon class="toast__content--header-close" (click)="(closeToast)"
+        >close</mat-icon
+      >
+    </div>
+    <div class="toast__content--description">{{ message }}</div>
+  </div>
+</div>
+
+}
