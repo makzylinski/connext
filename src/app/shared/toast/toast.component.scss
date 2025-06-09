@@ -8,8 +8,15 @@
   display: flex;
 
   &__icon {
+    display: flex;
+    align-self: center;
   }
 
   &__content {
+    padding: 5px;
+
+    &--header {
+      font-weight: 700;
+    }
   }
 }
