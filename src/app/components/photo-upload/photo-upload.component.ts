@@ -17,7 +17,8 @@ import { FileUploadService } from '../../services/file-upload.service';
 })
 export class PhotoUploadComponent {
   selectedFile: File | null = null;
-  imagePreview: string | ArrayBuffer | null = null;
+  imagePreview: string | ArrayBuffer | null =
+    'assets/images/default-profile.png';
 
   constructor(
     private readonly fileUploadService: FileUploadService,

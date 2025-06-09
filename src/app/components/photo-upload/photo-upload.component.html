@@ -1,8 +1,8 @@
 <div class="upload">
   <input #fileInput type="file" (change)="onFileSelected($event)" hidden />
-  @if (imagePreview) {
-  <img class="upload__preview" [src]="imagePreview" alt="Podgląd" />
-  }
+
+  <img class="upload__preview" [src]="imagePreview" />
+
   <div class="upload__buttons">
     <button mat-raised-button color="primary" (click)="fileInput.click()">
       Select file
