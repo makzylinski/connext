@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { UserState } from './user-state.model';
 import {
+  setFirstLoginBio,
   setFirstLoginData,
   setFirstLoginPhotoUrl,
   setUserData,
@@ -36,6 +37,13 @@ export const userReducer = createReducer(
     firstLoginData: {
       ...state.firstLoginData,
       photoUrl,
+    },
+  })),
+  on(setFirstLoginBio, (state, { bio }) => ({
+    ...state,
+    firstLoginData: {
+      ...state.firstLoginData,
+      bio,
     },
   }))
 );

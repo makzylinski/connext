@@ -4,8 +4,13 @@ import { Store } from '@ngrx/store';
 import { map, Observable, take } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
-import { setFirstLoginPhotoUrl, setUserData } from '../store/user/user.actions';
 import {
+  setFirstLoginBio,
+  setFirstLoginPhotoUrl,
+  setUserData,
+} from '../store/user/user.actions';
+import {
+  selectFirstLoginBio,
   selectFirstLoginPhotoUrl,
   selectUser,
   selectUserId,
@@ -29,10 +34,17 @@ export class UserService {
       take(1),
       map((photoUrl) => photoUrl || '')
     );
+  getFirstLoginBio = (): Observable<string> =>
+    this.store.select(selectFirstLoginBio).pipe(
+      take(1),
+      map((bio) => bio || '')
+    );
 
   dispatchUser = (user: User) => this.store.dispatch(setUserData({ user }));
   dispatchFirstLoginPhotoUrl = (photoUrl: string) =>
     this.store.dispatch(setFirstLoginPhotoUrl({ photoUrl }));
+  dispatchFirstLoginBio = (bio: string) =>
+    this.store.dispatch(setFirstLoginBio({ bio }));
 
   getUsers = (): Observable<User[]> => this.http.get<User[]>(`${this.baseUrl}`);
 
