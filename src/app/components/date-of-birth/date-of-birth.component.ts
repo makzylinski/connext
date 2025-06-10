@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import {
@@ -22,10 +22,20 @@ import { UserService } from '../../services/user.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateOfBirthComponent {
+export class DateOfBirthComponent implements OnInit {
   selectedDate = new Date();
 
   constructor(private readonly userService: UserService) {}
+
+  ngOnInit(): void {
+    this.userService
+      .getFirstLoginDateOfBirth()
+      .subscribe((dateOfBirth: Date) => {
+        if (dateOfBirth.getTime() !== new Date().getTime()) {
+          this.selectedDate = dateOfBirth;
+        }
+      });
+  }
 
   filterPastDates = (date: Date | null): boolean => {
     const today = new Date();
