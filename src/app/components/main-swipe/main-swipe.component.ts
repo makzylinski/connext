@@ -43,7 +43,7 @@ export class MainSwipeComponent implements OnInit {
 
     if (isFirstLogin) {
       this.dialog.open(CreationUserModalComponent, {
-        width: '550px',
+        width: '450px',
         height: '380px',
         panelClass: 'modal',
       });
