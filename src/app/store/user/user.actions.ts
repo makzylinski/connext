@@ -17,6 +17,11 @@ export const setFirstLoginBio = createAction(
   props<{ bio: string }>()
 );
 
+export const setFirstLoginBirthDate = createAction(
+  '[User] Set First Login Birth Date',
+  props<{ dateOfBirth: Date }>()
+);
+
 export const setFirstLoginData = createAction(
   '[User] Set First Login Data',
   props<{ firstLoginData: firstLoginData }>()

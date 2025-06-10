@@ -6,11 +6,13 @@ import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import {
   setFirstLoginBio,
+  setFirstLoginBirthDate,
   setFirstLoginPhotoUrl,
   setUserData,
 } from '../store/user/user.actions';
 import {
   selectFirstLoginBio,
+  selectFirstLoginDateOfBirth,
   selectFirstLoginPhotoUrl,
   selectUser,
   selectUserId,
@@ -39,12 +41,19 @@ export class UserService {
       take(1),
       map((bio) => bio || '')
     );
+  getFirstLoginDateOfBirth = (): Observable<Date> =>
+    this.store.select(selectFirstLoginDateOfBirth).pipe(
+      take(1),
+      map((dateOfBirth) => dateOfBirth || new Date())
+    );
 
   dispatchUser = (user: User) => this.store.dispatch(setUserData({ user }));
   dispatchFirstLoginPhotoUrl = (photoUrl: string) =>
     this.store.dispatch(setFirstLoginPhotoUrl({ photoUrl }));
   dispatchFirstLoginBio = (bio: string) =>
     this.store.dispatch(setFirstLoginBio({ bio }));
+  dispatchFirstLoginDateOfBirth = (dateOfBirth: Date) =>
+    this.store.dispatch(setFirstLoginBirthDate({ dateOfBirth }));
 
   getUsers = (): Observable<User[]> => this.http.get<User[]>(`${this.baseUrl}`);
 
