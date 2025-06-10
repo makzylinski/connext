@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MatDatepickerInputEvent,
+  MatDatepickerModule,
+} from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
@@ -18,5 +21,13 @@ export class DateOfBirthComponent {
     today.setHours(0, 0, 0, 0);
 
     return date !== null && date < today;
+  };
+
+  onDateChange = (date: MatDatepickerInputEvent<Date>) => {
+    const value = date.value;
+
+    if (value) {
+      const newDate = new Date(value);
+    }
   };
 }
