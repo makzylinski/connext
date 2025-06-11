@@ -26,7 +26,7 @@
       mat-button
       [disabled]="
         currentStep === stepsConfig.length - 1 ||
-        !(isPhotoStepValidated$ | async)
+        !(getCurrentStepValidation$() | async)
       "
       (click)="onNextStepClick()"
     >
