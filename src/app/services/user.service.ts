@@ -76,4 +76,7 @@ export class UserService {
   updateBioValidation = (isBioUploaded: boolean) => {
     this.isBioUploaded$.next(isBioUploaded);
   };
+
+  postDateOfBirth = (birthDate: Date) =>
+    this.http.post(`${this.baseUrl}/add-birth-date`, birthDate);
 }

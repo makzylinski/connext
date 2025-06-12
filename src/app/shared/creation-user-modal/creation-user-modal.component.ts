@@ -94,4 +94,8 @@ export class CreationUserModalComponent implements OnInit {
       this.currentStep--;
     }
   };
+
+  submit = () => {
+    // this.userService.performBirthDataAction();
+  };
 }
