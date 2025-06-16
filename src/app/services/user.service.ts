@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, map, Observable, take } from 'rxjs';
+import { BehaviorSubject, map, Observable, switchMap, take } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import {
@@ -79,4 +79,14 @@ export class UserService {
 
   postDateOfBirth = (birthDate: Date) =>
     this.http.post(`${this.baseUrl}/add-birth-date`, birthDate);
+
+  submitDateOfBirth = () =>
+    this.getFirstLoginDateOfBirth().pipe(
+      take(1),
+      switchMap((dateOfBirth: Date) => {
+        return this.http.post(`${this.baseUrl}/add-birth-date`, {
+          dateOfBirth: dateOfBirth.toISOString(),
+        });
+      })
+    );
 }

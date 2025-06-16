@@ -6,6 +6,7 @@ import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
+  MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -44,10 +45,9 @@ export class CreationUserModalComponent implements OnInit {
 
   constructor(
     private readonly fileUploadService: FileUploadService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly dialogRef: MatDialogRef<CreationUserModalComponent>
   ) {}
-
-  onSubmit = () => null;
 
   ngOnInit(): void {
     this.stepsConfig = [
@@ -96,6 +96,8 @@ export class CreationUserModalComponent implements OnInit {
   };
 
   submit = () => {
-    // this.userService.performBirthDataAction();
+    this.userService
+      .submitDateOfBirth()
+      .subscribe(() => this.dialogRef.close());
   };
 }
