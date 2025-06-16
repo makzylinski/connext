@@ -6,12 +6,14 @@ import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
+  MatDialogRef,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Observable } from 'rxjs';
 import { FileUploadService } from '../../services/file-upload.service';
+import { UserService } from '../../services/user.service';
 import { StepsContainerComponent } from '../steps-container/steps-container.component';
 
 @Component({
@@ -39,10 +41,13 @@ export class CreationUserModalComponent implements OnInit {
   stepsConfig: Array<{ step: number; name: string; header: string }>;
   currentStep: number = 0;
   isPhotoStepValidated$: Observable<boolean>;
+  isBioStepValidated$: Observable<boolean>;
 
-  constructor(private readonly fileUploadService: FileUploadService) {}
-
-  onSubmit = () => null;
+  constructor(
+    private readonly fileUploadService: FileUploadService,
+    private readonly userService: UserService,
+    private readonly dialogRef: MatDialogRef<CreationUserModalComponent>
+  ) {}
 
   ngOnInit(): void {
     this.stepsConfig = [
@@ -64,6 +69,18 @@ export class CreationUserModalComponent implements OnInit {
     ];
 
     this.isPhotoStepValidated$ = this.fileUploadService.photoValidation;
+    this.isBioStepValidated$ = this.userService.bioValidation;
+  }
+
+  getCurrentStepValidation$(): Observable<boolean> {
+    switch (this.currentStep) {
+      case 0:
+        return this.isPhotoStepValidated$;
+      case 1:
+        return this.isBioStepValidated$;
+      default:
+        return new Observable((observer) => observer.next(true));
+    }
   }
 
   onNextStepClick = () => {
@@ -76,5 +93,11 @@ export class CreationUserModalComponent implements OnInit {
     if (this.currentStep !== 0) {
       this.currentStep--;
     }
+  };
+
+  submit = () => {
+    this.userService
+      .submitDateOfBirth()
+      .subscribe(() => this.dialogRef.close());
   };
 }

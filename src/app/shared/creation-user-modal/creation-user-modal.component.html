@@ -26,14 +26,21 @@
       mat-button
       [disabled]="
         currentStep === stepsConfig.length - 1 ||
-        !(isPhotoStepValidated$ | async)
+        !(getCurrentStepValidation$() | async)
       "
       (click)="onNextStepClick()"
     >
       <mat-icon>arrow_forward_ios</mat-icon>
     </button>
     } @else {
-    <button mat-button>Submit</button>
+    <button
+      mat-raised-button
+      color="accent"
+      [disabled]="false"
+      (click)="submit()"
+    >
+      Submit
+    </button>
     }
   </mat-dialog-actions>
 </div>

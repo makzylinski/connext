@@ -32,6 +32,8 @@ export class BioComponent implements OnInit {
 
   onSave = (): void => {
     this.userService.dispatchFirstLoginBio(this.bioValue);
-    this.settingsService.saveBio(this.bioValue).subscribe();
+    this.settingsService.saveBio(this.bioValue).subscribe(() => {
+      this.userService.updateBioValidation(true);
+    });
   };
 }

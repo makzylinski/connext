@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Observable, take } from 'rxjs';
+import { BehaviorSubject, map, Observable, switchMap, take } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import {
@@ -23,6 +23,9 @@ import {
 })
 export class UserService {
   private readonly baseUrl = environment.baseUrl + '/api/users';
+
+  isBioUploaded$ = new BehaviorSubject<boolean>(false);
+  bioValidation = this.isBioUploaded$.asObservable();
 
   constructor(
     private readonly store: Store,
@@ -68,5 +71,22 @@ export class UserService {
   getCurrentUsersProfilePicture = (): Observable<string> =>
     this.selectLoggedUser().pipe(
       map((user) => user.profileImageUrl || 'assets/images/default-profile.png')
+    );
+
+  updateBioValidation = (isBioUploaded: boolean) => {
+    this.isBioUploaded$.next(isBioUploaded);
+  };
+
+  postDateOfBirth = (birthDate: Date) =>
+    this.http.post(`${this.baseUrl}/add-birth-date`, birthDate);
+
+  submitDateOfBirth = () =>
+    this.getFirstLoginDateOfBirth().pipe(
+      take(1),
+      switchMap((dateOfBirth: Date) => {
+        return this.http.post(`${this.baseUrl}/add-birth-date`, {
+          dateOfBirth: dateOfBirth.toISOString(),
+        });
+      })
     );
 }
